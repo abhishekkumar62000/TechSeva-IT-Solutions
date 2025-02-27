@@ -403,7 +403,7 @@ body {
   background-repeat: no-repeat, no-repeat, no-repeat;
   background-position: -200px bottom, center, center;
   background-size: auto, cover, auto;
-  padding-block-start: -60px;
+  padding-block-start: 60px;
   padding-block-end: var(--section-padding);
 }
 
@@ -1135,4 +1135,63 @@ body {
 
   .footer-brand { grid-column: auto; }
 
+}
+
+
+
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero {
+    padding-block-start: 100px; /* Ensure enough space for the navbar */
+  }
+
+  .hero-content {
+    text-align: center;
+  }
+
+  .hero-title {
+    font-size: var(--fs-3);
+  }
+
+  .hero-subtitle {
+    font-size: var(--fs-6);
+  }
+
+  .hero-text {
+    font-size: var(--fs-7);
+    margin-block-end: 60px;
+  }
+
+  .hero-banner img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* Navbar adjustments for mobile */
+@media (max-width: 768px) {
+  .navbar {
+    left: 0;
+    visibility: visible;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .navbar.active {
+    transform: translateX(0);
+  }
+
+  .nav-open-btn {
+    display: block;
+  }
+
+  .nav-close-btn {
+    display: block;
+  }
+
+  .overlay {
+    display: block;
+  }
 }
