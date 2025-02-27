@@ -17,7 +17,7 @@
   <img src="./LOGO.png" width="100px" />
   <br><strong>
 ✦🌟🚀Empowering Businesses With Cutting-Edge IT Solutions! Your One-Stop IT Solutions Partner – Websites, Apps, Branding, Dashboards & Beyond! ✦</strong><br><br>
-	<a href=https://ai-resumexpert-analyst.streamlit.app/>🌍👨‍💻🚨 **Live Demo APP & Try It Yourself!**</a><strong><br><br>
+	<a href=https://techseva-it-solutions.vercel.app/>🌍👨‍💻🚨 **Live Demo APP & Try It Yourself!**</a><strong><br><br>
 
   
   `## 🔥 **🌟About TechSeva IT Solutions**  
@@ -123,8 +123,7 @@ Providing expert IT consultation to optimize and future-proof your business. We 
 
 🔹 **Check out the AI-Powered Interactive Experience! With 👨‍💻TechSeva IT Solutions**  
 ## 🌍👨‍💻🚨 **Live Demo APP & Try It Yourself!**
-:--https://ai-resumexpert-analyst.streamlit.app/  
-
+:--https://techseva-it-solutions.vercel.app/
 ---
 
 
@@ -165,6 +164,7 @@ This project is licensed under <a href="./LICENSE">MIT</a>. <img width=2300/>
 
 
 ## 👨‍💻TechSeva IT Solutions Contact Us:-
+**💻Website**:-- https://techseva-it-solutions.vercel.app/
 **📲 Whatapp**:- https://wa.me/919470074183 
 **🔗 Instagram**:- https://www.instagram.com/techseva_solutions?igsh=MXcxM2xjY3dlcnlodg==
 **📧 Email**:- info@TechSevaSolutions.com
