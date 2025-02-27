@@ -130,7 +130,7 @@ Providing expert IT consultation to optimize and future-proof your business. We 
 
 ---
 
-## ❤️ **Made with Passion by Abhishek Yadav & Open-Source Contributors!** 🚀✨
+## ❤️ **Made with Passion by Abhishek Yadav** 🚀✨
 
 
 <h1 align="center">© LICENSE <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/main/Symbols/Check%20Box%20With%20Check.webp" alt="Check Box With Check" width="25" height="25" /></h1>
