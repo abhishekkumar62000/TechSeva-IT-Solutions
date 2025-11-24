@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Interactive Demos — TechSeva</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="canonical" href="https://techsevasolutions.com/demos.html">
+  <meta name="description" content="Interactive demos and prototypes — try sample dashboards and embeds to preview TechSeva solutions.">
+  <meta property="og:title" content="Interactive Demos — TechSeva Solutions">
+  <meta property="og:description" content="Interactive demos and dashboard sandboxes to preview capabilities and prototypes.">
+  <meta property="og:image" content="https://techsevasolutions.com/assets/images/og-image.png">
+  <meta property="og:url" content="https://techsevasolutions.com/demos.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+  <style>
+    .demo-wrap{max-width:900px;margin:28px auto}
+  </style>
+</head>
+<body>
+  <header class="header"><div class="container"><a href="index.html" class="logo-container"><h3 class="logo1"><span style="color:red">TechSeva</span></h3></a></div></header>
+  <main>
+    <div class="container demo-wrap">
+      <h1>Live Demo — Dashboard Sandbox</h1>
+      <p class="text">Interact with a sample KPI chart. Adjust the sample data and see live updates.</p>
+
+      <canvas id="demoChart" width="800" height="320"></canvas>
+
+      <div style="margin-top:12px;display:flex;gap:8px;align-items:center;">
+        <label>Monthly Visitors: <input id="demoVisitors" type="number" value="1000" style="width:120px;margin-left:8px"/></label>
+        <label>Conversion (%): <input id="demoConv" type="number" value="1" style="width:80px;margin-left:8px"/></label>
+        <button class="btn" id="updateDemo">Update Chart</button>
+      </div>
+
+      <h3 style="margin-top:18px">Prototype Embed</h3>
+      <p class="text">Embed your Figma prototype here — replace the URL with your Figma embed link.</p>
+      <div style="width:100%;height:420px;border:1px solid #eee;display:flex;align-items:center;justify-content:center;background:#fafafa">
+        <p class="text">Figma / Prototype embed placeholder (replace with your embed iframe)</p>
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    const ctx = document.getElementById('demoChart').getContext('2d');
+    const demoChart = new Chart(ctx,{
+      type:'bar',
+      data:{labels:['Week 1','Week 2','Week 3','Week 4'], datasets:[{label:'Estimated Revenue', data:[1200,1300,1500,1700], backgroundColor:'#1f7aee'}]},
+      options:{responsive:true}
+    });
+
+    document.getElementById('updateDemo').addEventListener('click', function(){
+      const visitors = Number(document.getElementById('demoVisitors').value)||0;
+      const conv = Number(document.getElementById('demoConv').value)||0;
+      // simplistic revenue calculation per week
+      const weekly = Math.round((visitors/4) * (conv/100) * 500);
+      demoChart.data.datasets[0].data = [weekly, weekly, weekly, weekly];
+      demoChart.update();
+    });
+  </script>
+
+  <script src="./assets/js/script.js" defer></script>
+  <script src="./assets/js/roi.js" defer></script>
+  <script src="./assets/js/site-config.js" defer></script>
+  <script src="./assets/js/ui-enhancements.js" defer></script>
+</body>
+</html>

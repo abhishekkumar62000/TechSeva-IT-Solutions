@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌐 Website Development — TechSeva Solutions</title>
+  <link rel="icon" href="./logo.png">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Source+Sans+Pro:wght@600;700&display=swap"
+    rel="stylesheet">
+  <!-- Lottie player for animated hero -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@1.5.7/dist/lottie-player.js"></script>
+  <!-- Google Analytics: replace MEASUREMENT_ID with your GA4 ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=MEASUREMENT_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} 
+    gtag('js', new Date());
+    gtag('config', 'MEASUREMENT_ID');
+  </script>
+  <!-- Service structured data for Website Development -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Website Development",
+    "serviceType": "Web Development",
+    "provider": {
+      "@type": "Organization",
+      "name": "TechSeva Solutions",
+      "url": "https://techsevasolutions.com"
+    },
+    "description": "Fast, secure & SEO-friendly website development for businesses, e-commerce and web apps.",
+    "areaServed": "IN",
+    "url": "https://techsevasolutions.com/website-development.html"
+  }
+  </script>
+</head>
+
+<body id="top">
+
+  <header class="header" data-header>
+    <div class="container">
+
+      <div class="overlay" data-overlay></div>
+
+      <a href="index.html" class="logo-container">
+        <h3 class="logo1"><span style="color: red;">TechSeva</span></h3>
+        <h3 class="logo2"><span style="color: rgb(246, 151, 8);">IT Solutions</span></h3>
+      </a>
+
+      <nav class="navbar" data-navbar>
+
+        <div class="navbar-top">
+          <a href="index.html" class="logo">TechSeva</a>
+
+          <button class="nav-close-btn" aria-label="Close Menu" data-nav-close-btn>
+            <ion-icon name="close-outline"></ion-icon>
+          </button>
+        </div>
+
+        <ul class="navbar-list">
+          <li class="navbar-item"><a href="index.html#home" class="navbar-link" data-navbar-link>Home</a></li>
+          <li class="navbar-item"><a href="index.html#about" class="navbar-link" data-navbar-link>About</a></li>
+          <li class="navbar-item"><a href="index.html#services" class="navbar-link" data-navbar-link>Services</a></li>
+          <li class="navbar-item"><a href="index.html#features" class="navbar-link" data-navbar-link>Features</a></li>
+          <li class="navbar-item"><a href="index.html#blog" class="navbar-link" data-navbar-link>Blog</a></li>
+          <li class="navbar-item"><a href="index.html#services2" class="navbar-link" data-navbar-link>Contact</a></li>
+        </ul>
+
+      </nav>
+
+      <a href="index.html#services2" class="btn">
+        <ion-icon name="chevron-forward-outline" aria-hidden="true"></ion-icon>
+        <span>Get A Quote</span>
+      </a>
+
+      <button class="nav-open-btn" aria-label="Open Menu" data-nav-open-btn>
+        <ion-icon name="menu-outline"></ion-icon>
+      </button>
+
+    </div>
+  </header>
+
+  <main>
+    <article>
+
+      <section class="section wd-hero">
+        <div class="container">
+          <h1 class="wd-title">🌐 Website Development</h1>
+          <div style="display:flex; align-items:center; justify-content:center; gap:30px; flex-wrap:wrap;">
+            <div style="max-width:520px; text-align:left;">
+              <p class="wd-sub">Fast, secure & SEO-friendly websites built to convert visitors into customers. From brochure sites to complex web apps — we handle discovery, design, development, testing and launch with measurable outcomes.</p>
+              <p class="wd-hero-inline"><span id="typewriter"></span></p>
+              <div style="text-align:left; margin-top:18px; display:flex; gap:12px;">
+                <button class="btn" id="openContact">Request A Quote</button>
+                <a class="btn" href="index.html#services2">Contact Options</a>
+                <button class="btn" id="downloadSpec">Download Spec</button>
+              </div>
+            </div>
+
+            <div style="max-width:420px; width:100%;">
+              <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_jtbfg2nb.json" background="transparent" speed="1" style="width:100%; height:320px;" loop autoplay></lottie-player>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Promo banner (Flipkart-style feel) -->
+      <section class="section promo-banner reveal">
+        <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;">
+          <div style="flex:1; min-width:260px;">
+            <h3 style="margin:0; font-size:2rem; color:var(--white);">Limited Time Offer — Launch Website</h3>
+            <p style="color:rgba(255,255,255,0.9); margin-top:6px;">Get a fast, SEO-ready site + 1 month support at special pricing. Ends soon.</p>
+            <div style="margin-top:12px; display:flex; gap:8px; align-items:center;">
+              <button class="btn" id="promoQuote">Get Offer</button>
+              <span class="promo-badge">SALE -40%</span>
+            </div>
+          </div>
+          <div style="min-width:200px; text-align:center;">
+            <img src="./assets/images/discount.png" alt="promo" style="width:180px; opacity:0.95; filter:drop-shadow(0 10px 30px rgba(0,0,0,0.12));">
+          </div>
+        </div>
+      </section>
+
+      <!-- Counters / quick stats -->
+      <section class="section">
+        <div class="container">
+          <div class="counters reveal">
+            <div class="counter">
+              <p class="num" data-end="100">0</p>
+              <p class="text">Satisfied Clients</p>
+            </div>
+            <div class="counter">
+              <p class="num" data-end="500">0</p>
+              <p class="text">Projects Launched</p>
+            </div>
+            <div class="counter">
+              <p class="num" data-end="2">0</p>
+              <p class="text">Years Experience</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="overview">
+        <div class="container">
+          <h2 id="overview" class="h2 section-title underline">What We Build</h2>
+          <p>We create tailored websites for small businesses, e-commerce stores, SaaS, portfolios and enterprise web apps. Our focus is on speed, accessibility, security and measurable results.</p>
+
+          <ul class="features-list" style="margin-top:20px;">
+            <li>
+              <div class="features-card">
+                <div class="icon"><ion-icon name="speedometer-outline"></ion-icon></div>
+                <div class="content"><h3 class="h3 title">Performance First</h3><p class="text">Core Web Vitals optimised, CDN-ready builds and image & asset optimization.</p></div>
+              </div>
+            </li>
+            <li>
+              <div class="features-card">
+                <div class="icon"><ion-icon name="shield-checkmark-outline"></ion-icon></div>
+                <div class="content"><h3 class="h3 title">Secure By Design</h3><p class="text">HTTPS, secure headers, input sanitization, and best-practice auth flows.</p></div>
+              </div>
+            </li>
+            <li>
+              <div class="features-card">
+                <div class="icon"><ion-icon name="search-outline"></ion-icon></div>
+                <div class="content"><h3 class="h3 title">SEO & Conversion</h3><p class="text">Accessible markup, structured data, and conversion-focused UX.</p></div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section" id="packages">
+        <div class="container">
+          <h2 class="h2 section-title underline">Packages & Roadmap</h2>
+          <div style="display:flex; justify-content:center; margin-block-end:12px;">
+            <label style="display:flex; gap:8px; align-items:center; background:#fff; padding:6px 10px; border-radius:20px; box-shadow:var(--shadow);">
+              <input type="checkbox" id="pricingToggle"> Show yearly prices
+            </label>
+          </div>
+
+          <div class="packages" id="packageGrid">
+            <div class="package-card">
+              <h3 class="h3 title">Starter</h3>
+              <p class="price" data-price-month="6999" data-price-year="50999">₹6,999</p>
+              <p class="text">Small business landing page, 3 pages, responsive, basic SEO.</p>
+              <p class="features">Includes: Hosting guide, CMS setup, 5 revisions.</p>
+            </div>
+            <div class="package-card">
+              <h3 class="h3 title">Business</h3>
+              <p class="price" data-price-month="20999" data-price-year="150199">₹24,999</p>
+              <p class="text">Custom design, CMS integration, forms, 10 pages, analytics.</p>
+              <p class="features">Includes: 1 month support, SEO basics, performance tuning.</p>
+            </div>
+            <div class="package-card">
+              <h3 class="h3 title">Pro / E‑commerce</h3>
+              <p class="price" data-price-month="49999" data-price-year="350999">₹59,999+</p>
+              <p class="text">E‑commerce, payments, inventory, admin dashboard, integrations.</p>
+              <p class="features">Includes: GDPR, payment compliance, 3 months support.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Feature tiles with 3D flip cards -->
+      <section class="section feature-tiles reveal">
+        <div class="container">
+          <h2 class="h2 section-title underline">Interactive Features</h2>
+          <div class="tiles-grid">
+            <div class="flip-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <h3>Fast & Secure</h3>
+                  <p>Optimized builds & security hardening</p>
+                </div>
+                <div class="flip-card-back">
+                  <p>Includes HTTPS, secure headers, OWASP basics and performance tuning for Core Web Vitals.</p>
+                  <button class="btn small" data-action="learn">Learn</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="flip-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <h3>SEO & Analytics</h3>
+                  <p>Structured data & tracking</p>
+                </div>
+                <div class="flip-card-back">
+                  <p>Setup GA4, sitemap, robots, and on-page SEO with performance reports.</p>
+                  <button class="btn small" data-action="learn">Learn</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="flip-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <h3>E‑commerce Ready</h3>
+                  <p>Payments & inventory</p>
+                </div>
+                <div class="flip-card-back">
+                  <p>Integrate Stripe/PayPal, inventory sync, and checkout optimizations.</p>
+                  <button class="btn small" data-action="learn">Learn</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pricing calculator -->
+      <section class="section" id="pricing-calculator">
+        <div class="container">
+          <h2 class="h2 section-title underline">Interactive Pricing Calculator</h2>
+          <p class="text">Select features to estimate your project cost. Toggle monthly/yearly pricing and generate a quote.</p>
+
+          <div class="calculator">
+            <div class="calc-left">
+              <div class="feature-card feature" data-price="5000" data-key="basic-cms">
+                <div class="fc-icon">📄</div>
+                <div class="fc-body"><strong>Basic CMS</strong><div class="fc-sub">Content editor & pages</div></div>
+                <div class="fc-price">₹5,000</div>
+              </div>
+
+              <div class="feature-card feature" data-price="12000" data-key="custom-design">
+                <div class="fc-icon">🎨</div>
+                <div class="fc-body"><strong>Custom Design</strong><div class="fc-sub">Unique UI/UX</div></div>
+                <div class="fc-price">₹12,000</div>
+              </div>
+
+              <div class="feature-card feature" data-price="8000" data-key="ecom">
+                <div class="fc-icon">🛒</div>
+                <div class="fc-body"><strong>E‑commerce</strong><div class="fc-sub">Payments & products</div></div>
+                <div class="fc-price">₹8,000</div>
+              </div>
+
+              <div class="feature-card feature" data-price="4000" data-key="seo">
+                <div class="fc-icon">🔍</div>
+                <div class="fc-body"><strong>SEO Optimization</strong><div class="fc-sub">On-page & speed</div></div>
+                <div class="fc-price">₹4,000</div>
+              </div>
+
+              <div class="feature-card feature" data-price="6000" data-key="integrations">
+                <div class="fc-icon">🔗</div>
+                <div class="fc-body"><strong>Integrations & APIs</strong><div class="fc-sub">CRM, Payments, etc.</div></div>
+                <div class="fc-price">₹6,000</div>
+              </div>
+
+              <div style="margin-top:12px;">
+                <label for="pageCount">Estimated pages: <span id="pageCountLabel">5</span></label>
+                <input type="range" id="pageCount" min="1" max="30" value="5">
+                <div class="text" style="font-size:13px; color:#666; margin-top:6px;">Per-page rate: <strong id="perPageRate">₹1,200</strong></div>
+              </div>
+            </div>
+            <div class="calc-right">
+              <div class="calc-row">
+                <span>Recurring</span>
+                <label class="switch"><input type="checkbox" id="pricingToggleCalc"><span class="slider"></span></label>
+                <span id="pricingMode">Monthly</span>
+              </div>
+
+              <div class="price-card">
+                <div class="price-flip" id="priceFlip">
+                  <div class="pf-front">Total</div>
+                  <div class="pf-back">₹0</div>
+                </div>
+                <div class="calc-total">Breakdown:</div>
+                <ul id="calcBreakdown" class="calc-breakdown"></ul>
+              </div>
+
+              <div style="margin-top:12px; display:flex; gap:8px;">
+                <button class="btn" id="generateQuote">Generate Quote</button>
+                <button class="btn" id="addToForm">Add to Quote Form</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="preview">
+        <div class="container">
+          <h2 id="preview" class="h2 section-title underline">Live Mock Preview</h2>
+          <div class="wd-preview">
+            <div>
+              <div class="preview-controls">
+                <button data-preview-theme="light">Light</button>
+                <button data-preview-theme="dark">Dark</button>
+                <button data-preview-theme="accent">Accent</button>
+              </div>
+              <div class="preview-mock" style="height:320px; display:flex; align-items:center; justify-content:center; background:#fff;">
+                <div>
+                  <h3 style="margin:0;">TechSeva Mock</h3>
+                  <p style="margin:6px 0 0; font-size:14px;">Sample header — hero — CTA</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <p class="text">Toggle the mock style to visualise different brand directions. This is a simple preview — full prototypes delivered as Figma or live staging sites.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="deliverables">
+        <div class="container">
+          <h2 id="deliverables" class="h2 section-title underline">What We Deliver — Full Scope</h2>
+          <p class="text">TechSeva provides a complete website delivery package — from discovery to launch, with documentation and optional maintenance. Below is a detailed breakdown of deliverables and process so you know exactly what you'll receive.</p>
+
+          <h3 class="h3 title" style="margin-top:18px;">Discovery & Strategy (Deliverables)</h3>
+          <ul class="text" style="margin-left:18px; margin-top:8px;">
+            <li>Project brief & goals document: target audience, success metrics, and feature list.</li>
+            <li>SEO baseline report: keyword opportunities and technical SEO considerations.</li>
+            <li>Sitemap & low-fidelity wireframes for key pages.</li>
+            <li>Project timeline & milestone schedule with acceptance criteria.</li>
+          </ul>
+
+          <h3 class="h3 title" style="margin-top:12px;">Design (Deliverables)</h3>
+          <ul class="text" style="margin-left:18px; margin-top:8px;">
+            <li>High-fidelity UI screens (desktop + tablet + mobile) in Figma with brand color and typography guide.</li>
+            <li>Interactive prototype for stakeholder review (clickable Figma prototype).</li>
+            <li>2–3 rounds of revision included (additional revisions can be scoped).</li>
+          </ul>
+
+          <h3 class="h3 title" style="margin-top:12px;">Development & QA (Deliverables)</h3>
+          <ul class="text" style="margin-left:18px; margin-top:8px;">
+            <li>Production-ready code with structured, semantic HTML, modern CSS, and modular JS. Optional frameworks (React/Vue) per project requirements.</li>
+            <li>CMS integration or headless CMS setup (optional) and training for content editors.</li>
+            <li>Forms and integrations: contact forms, CRM integrations, analytics, payment gateways (if e‑commerce).</li>
+            <li>Accessibility checks, cross-browser testing, and device QA matrix results.</li>
+            <li>Performance audits and Core Web Vitals improvements with before & after reports.</li>
+          </ul>
+
+          <h3 class="h3 title" style="margin-top:12px;">Launch & Handover (Deliverables)</h3>
+          <ul class="text" style="margin-left:18px; margin-top:8px;">
+            <li>Deployment to staging and production with DNS, SSL and CDN configuration assistance.</li>
+            <li>Technical documentation for the site, deployment steps and maintenance checklist.</li>
+            <li>1–3 months of post-launch support depending on the package.</li>
+          </ul>
+
+        </div>
+      </section>
+
+      <!-- Demo Projects Gallery -->
+      <section class="section demo-gallery" aria-labelledby="demo-projects">
+        <div class="container">
+          <h2 id="demo-projects" class="h2 section-title underline">Demo Projects — Website Deliveries</h2>
+          <p class="text">Here are five recent website deliveries. Click any item to view a larger preview and brief notes about the project.</p>
+
+          <div class="wd-gallery">
+            <div class="wd-gallery-grid">
+              <button class="wd-gallery-item" data-index="0" aria-label="Open demo 1">
+                <img src="./assets/images/Web1.png" alt="Demo project 1" class="img-cover">
+                <div class="wd-caption">E‑commerce Store — Fast Checkout</div>
+              </button>
+
+              <button class="wd-gallery-item" data-index="1" aria-label="Open demo 2">
+                <img src="./assets/images/Web2.png" alt="Demo project 2" class="img-cover">
+                <div class="wd-caption">SaaS Landing — Conversion Focus</div>
+              </button>
+
+            </div>
+          </div>
+
+          <!-- Lightbox / Modal (hidden) -->
+          <div id="demoLightbox" class="wd-lightbox" aria-hidden="true" role="dialog" aria-modal="true">
+            <button class="lb-close" aria-label="Close preview">×</button>
+            <button class="lb-prev" aria-label="Previous">‹</button>
+            <div class="lb-content">
+              <img src="" alt="" class="lb-image">
+              <div class="lb-meta"><h3 class="lb-title"></h3><p class="lb-desc"></p></div>
+            </div>
+            <button class="lb-next" aria-label="Next">›</button>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="section wd-faq" aria-labelledby="faq">
+        <div class="container">
+          <h2 id="faq" class="h2 section-title underline">Frequently Asked Questions</h2>
+          <div class="wd-accordion">
+            <button>How long does a website take?</button>
+            <div class="panel">Typical timelines: Starter 1–2 weeks, Business 3–6 weeks, Pro 6+ weeks (depends on revisions & integrations).</div>
+
+            <button>Do you provide hosting?</button>
+            <div class="panel">We can recommend and configure hosting (Netlify, Vercel, traditional hosts) and set up domains, SSL and CDN.</div>
+
+            <button>Will my site be SEO friendly?</button>
+            <div class="panel">Yes — we build with semantic markup, fast load times, and provide basic on-page SEO and sitemap/robots guidance.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="contact">
+        <div class="container">
+          <h2 id="contact" class="h2 section-title underline">Start Your Project</h2>
+          <p class="text">Ready to build? Share a few details and we'll respond within 24 hours.</p>
+          <div style="margin-top:18px;">
+            <button class="btn" data-mailto="mailto:info@techsevasolutions.com?subject=New%20Website%20Project">Contact Us — Get Started</button>
+          </div>
+        </div>
+      </section>
+
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-bottom">
+      <p class="copyright">&copy; 2025 <a href="index.html" class="copyright-link">TechSeva Solutions</a>. All Right Reserved</p>
+    </div>
+  </footer>
+
+  <script src="./assets/js/script.js"></script>
+  <script src="./assets/js/roi.js"></script>
+  <script src="./assets/js/site-config.js"></script>
+  <script src="./assets/js/ui-enhancements.js"></script>
+  <script src="./assets/js/demo-gallery.js"></script>
+  <!-- jsPDF (used for quote PDF generation). If you prefer another library, replace this. -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

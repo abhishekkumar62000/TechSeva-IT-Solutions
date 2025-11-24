@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Case Studies — TechSeva Solutions</title>
+  <link rel="canonical" href="https://techsevasolutions.com/case-studies.html">
+  <meta name="description" content="Case studies and results from TechSeva Solutions — examples of website, app and automation projects that drove measurable growth.">
+  <meta property="og:title" content="Case Studies — TechSeva Solutions">
+  <meta property="og:description" content="Explore our case studies and success stories showing measurable business impact.">
+  <meta property="og:image" content="https://techsevasolutions.com/assets/images/og-image.png">
+  <meta property="og:url" content="https://techsevasolutions.com/case-studies.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <style>
+    .ba-container{max-width:900px;margin:28px auto;display:grid;grid-template-columns:1fr;gap:16px}
+    .ba-slider{position:relative;overflow:hidden;border-radius:8px}
+    .ba-slider img{width:100%;height:auto;display:block}
+    .ba-handle{position:absolute;left:50%;top:0;bottom:0;width:4px;background:linear-gradient(#fff,#ddd);transform:translateX(-50%);z-index:3}
+    .ba-resize{position:absolute;left:0;top:0;bottom:0;width:50%;overflow:hidden}
+    .case-meta{display:flex;gap:12px;align-items:center;justify-content:space-between}
+    .chart-wrap{max-width:700px;margin:18px auto}
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+</head>
+<body>
+  <header class="header"><div class="container"><a href="index.html" class="logo-container"><h3 class="logo1"><span style="color:red">TechSeva</span></h3></a></div></header>
+  <main>
+    <div class="container ba-container">
+      <h1>Case Study — SaaS Growth (Sample)</h1>
+      <p class="text">See a before / after of an onboarding funnel redesign and the resulting KPI uplift.</p>
+
+      <div class="ba-slider" id="ba-slider">
+        <img src="./assets/images/cs-before.png" alt="Before" />
+        <div class="ba-resize" id="ba-resize">
+          <img src="./assets/images/cs-after.png" alt="After" />
+        </div>
+        <div class="ba-handle" id="ba-handle" aria-hidden="true"></div>
+      </div>
+
+      <div class="case-meta">
+        <div>
+          <h3 class="h3">Results</h3>
+          <ul class="text">
+            <li>Conversion rate improved: 1.2% → 3.6%</li>
+            <li>Monthly revenue uplift: ₹48,000</li>
+            <li>Retention increased by 8%</li>
+          </ul>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="caseChart" width="600" height="300"></canvas>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:18px;">
+        <button class="btn" data-mailto="mailto:info@techsevasolutions.com?subject=SaaS%20Case%20Study%20Inquiry">Request a Case Review</button>
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    // Simple before/after slider
+    (function(){
+      const slider = document.getElementById('ba-slider');
+      const resize = document.getElementById('ba-resize');
+      const handle = document.getElementById('ba-handle');
+      let dragging = false;
+      function pos(e){
+        const rect = slider.getBoundingClientRect();
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        let pct = (clientX - rect.left) / rect.width;
+        pct = Math.max(0, Math.min(1, pct));
+        resize.style.width = (pct*100)+'%';
+        handle.style.left = (pct*100)+'%';
+      }
+      handle.addEventListener('mousedown', ()=>dragging=true);
+      window.addEventListener('mouseup', ()=>dragging=false);
+      window.addEventListener('mousemove', (e)=>{ if(dragging) pos(e); });
+      // touch
+      handle.addEventListener('touchstart', ()=>dragging=true);
+      window.addEventListener('touchend', ()=>dragging=false);
+      window.addEventListener('touchmove', (e)=>{ if(dragging) pos(e); });
+      // init
+      resize.style.width='50%'; handle.style.left='50%';
+    })();
+
+    // Chart.js sample
+    (function(){
+      const ctx = document.getElementById('caseChart').getContext('2d');
+      const chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['Week 1','Week 2','Week 3','Week 4'],
+          datasets: [{ label: 'Conversion Rate (%)', data:[1.2,1.3,2.4,3.6], borderColor:'#1f7aee', fill:false }]
+        },
+        options:{ responsive:true, plugins:{legend:{display:false}} }
+      });
+    })();
+  </script>
+
+  <script src="./assets/js/script.js"></script>
+  <script src="./assets/js/roi.js"></script>
+  <script src="./assets/js/site-config.js"></script>
+  <script src="./assets/js/ui-enhancements.js"></script>
+</body>
+</html>
