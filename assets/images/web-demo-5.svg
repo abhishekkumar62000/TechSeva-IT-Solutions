@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+  <rect width="100%" height="100%" fill="#fff"/>
+  <rect x="40" y="40" width="1120" height="640" rx="14" fill="#eef9ff"/>
+  <g font-family="Poppins, sans-serif" fill="#21334a">
+    <text x="70" y="150" font-size="36" font-weight="700">Enterprise Dashboard</text>
+    <text x="70" y="200" font-size="18" opacity="0.8">Analytics • Reports • Admin panels</text>
+  </g>
+  <rect x="70" y="260" width="520" height="320" rx="8" fill="#fff" stroke="#e6f5ff"/>
+  <text x="84" y="320" font-family="Poppins, sans-serif" fill="#6b7f93" font-size="14">Analytics view</text>
+</svg>

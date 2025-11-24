@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+  <defs>
+    <linearGradient id="g2" x1="0" x2="1">
+      <stop offset="0" stop-color="#00c6ff"/>
+      <stop offset="1" stop-color="#0072ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="#fff"/>
+  <rect x="40" y="40" width="1120" height="640" rx="14" fill="url(#g2)" opacity="0.08"/>
+  <g font-family="Poppins, sans-serif" fill="#21334a">
+    <text x="70" y="150" font-size="36" font-weight="700">SaaS Landing</text>
+    <text x="70" y="200" font-size="18" opacity="0.8">Conversion-focused layout • Signups</text>
+  </g>
+  <rect x="70" y="260" width="980" height="260" rx="8" fill="#fff" stroke="#e6eefb"/>
+  <text x="84" y="320" font-family="Poppins, sans-serif" fill="#6b7f93" font-size="14">Hero & Pricing</text>
+</svg>
