@@ -57,6 +57,7 @@
           <li class="navbar-item"><a href="index.html#home" class="navbar-link" data-navbar-link>Home</a></li>
           <li class="navbar-item"><a href="index.html#about" class="navbar-link" data-navbar-link>About</a></li>
           <li class="navbar-item"><a href="index.html#services" class="navbar-link" data-navbar-link>Services</a></li>
+          <li class="navbar-item"><a href="./internships.html" class="navbar-link" data-navbar-link>Internships</a></li>
           <li class="navbar-item"><a href="index.html#features" class="navbar-link" data-navbar-link>Features</a></li>
           <li class="navbar-item"><a href="index.html#blog" class="navbar-link" data-navbar-link>Blog</a></li>
           <li class="navbar-item"><a href="index.html#services2" class="navbar-link" data-navbar-link>Contact</a></li>
@@ -82,19 +83,19 @@
       <section class="section wd-hero">
         <div class="container">
           <h2 class="wd-title">📱 App Development</h2>
-          <div style="display:flex; align-items:center; justify-content:center; gap:30px; flex-wrap:wrap;">
-            <div style="max-width:520px; text-align:left;">
+          <div class="hero-row">
+            <div class="hero-left">
               <p class="wd-sub">End-to-end mobile app development: native iOS/Android or cross-platform apps built for performance, reliability and great UX. We handle discovery, design, development, testing, store submission and post-launch support.</p>
               <p class="wd-hero-inline"><span id="typewriter-app"></span></p>
-              <div style="text-align:left; margin-top:18px; display:flex; gap:12px;">
+              <div class="hero-cta">
                 <button class="btn" id="openContactApp">Request A Quote</button>
                 <a class="btn" href="index.html#services2">Contact Options</a>
                 <button class="btn" id="downloadAppSpec">Download Spec</button>
               </div>
             </div>
 
-            <div style="max-width:420px; width:100%;">
-              <img src="./assets/images/App.jpg" alt="App preview" style="width:100%; height:320px; object-fit:cover; border-radius:8px; box-shadow:0 8px 24px rgba(0,0,0,0.12);">
+            <div class="hero-right">
+              <img src="./assets/images/App.jpg" alt="App preview" class="hero-image">
             </div>
           </div>
         </div>
@@ -105,14 +106,14 @@
           <h2 id="overview-app" class="h2 section-title underline">What We Build</h2>
           <p>Mobile apps for startups and enterprises: consumer apps, marketplaces, e‑commerce, business tools, and native integrations. We emphasise performance, offline resilience, security and delightful UX.</p>
           <!-- Animated showcase: device carousel + interactive feature cards -->
-          <section id="app-showcase" class="app-showcase" style="margin-top:20px;">
+          <section id="app-showcase" class="app-showcase">
             <div class="showcase-inner">
               <div class="device-carousel" aria-label="App screenshots carousel">
                 <button class="carousel-btn prev" aria-label="Previous screenshot">‹</button>
                 <div class="device-frame">
-                  <img src="./assets/images/APP2.png" alt="App screenshot 1 - TechSeva mobile app" class="device-slide" data-index="0">
-                  <img src="./assets/images/APP-PW.png" alt="App screenshot 2 - Dashboard view" class="device-slide" data-index="1" style="opacity:0;">
-                  <img src="./assets/images/UIUX.jpg" alt="App screenshot 3 - UI mockup" class="device-slide" data-index="2" style="opacity:0;">
+                  <img src="./assets/images/APP2.png" alt="App screenshot 1 - TechSeva mobile app" class="device-slide" data-index="0" loading="lazy">
+                  <img src="./assets/images/APP-PW.png" alt="App screenshot 2 - Dashboard view" class="device-slide" data-index="1" style="opacity:0;" loading="lazy">
+                  <img src="./assets/images/UIUX.jpg" alt="App screenshot 3 - UI mockup" class="device-slide" data-index="2" style="opacity:0;" loading="lazy">
                 </div>
                 <button class="carousel-btn next" aria-label="Next screenshot">›</button>
               </div>
@@ -259,7 +260,7 @@
 
   <footer class="footer">
     <div class="footer-bottom">
-      <p class="copyright">&copy; 2025 <a href="index.html" class="copyright-link">TechSeva Solutions</a>. All Right Reserved</p>
+      <p class="copyright">&copy; 2025 <a href="index.html" class="copyright-link">TechSeva Solutions</a>. All Right Reserved — <a href="./internships.html" class="copyright-link">Internships</a></p>
     </div>
   </footer>
 
@@ -268,6 +269,25 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="./assets/js/site-config.js"></script>
   <script src="./assets/js/ui-enhancements.js"></script>
+  <script src="./assets/js/app-mobile.js"></script>
+  <script>
+    // Small UI enhancement: make feature cards expandable on touch/keyboard
+    (function(){
+      var cards = document.querySelectorAll('.af-card');
+      if(!cards) return;
+      cards.forEach(function(card){
+        card.addEventListener('click', function(){
+          card.classList.toggle('expanded');
+        });
+        card.addEventListener('keydown', function(e){
+          if(e.key === 'Enter' || e.key === ' '){
+            e.preventDefault();
+            card.classList.toggle('expanded');
+          }
+        });
+      });
+    })();
+  </script>
 </body>
 
 </html>

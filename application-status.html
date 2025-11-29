@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Application Status — TechSeva</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+  <main style="padding:40px; max-width:880px; margin:0 auto;">
+    <h1 class="h2">Application Status</h1>
+    <div id="statusArea" style="margin-top:18px; background:#fff; padding:18px; border-radius:8px; box-shadow:var(--shadow);"></div>
+    <p style="margin-top:12px; color:var(--space-cadet-1);">This page shows application details saved locally in your browser when you applied. For a production tracking page, the token should resolve to a server-side record.</p>
+  </main>
+  <script>
+    function q(name){ const params = new URLSearchParams(location.search); return params.get(name); }
+    const token = q('token');
+    const out = document.getElementById('statusArea');
+    if(!token){ out.innerHTML = '<p>Please open this page using the tracking link provided after applying.</p>'; }
+    else {
+      try{
+        const raw = localStorage.getItem('app_' + token);
+        if(!raw){ out.innerHTML = '<p>No local record found for this token. If you applied on a different device or cleared storage, the record may not be available locally.</p>'; }
+        else {
+          const app = JSON.parse(raw);
+          let html = '<h3 style="margin-top:0">' + (app.name || 'Applicant') + '</h3>';
+          html += '<p><strong>Role:</strong> ' + (app.role || '-') + '</p>';
+          html += '<p><strong>Submitted:</strong> ' + (new Date(app.submittedAt).toLocaleString()) + '</p>';
+          if(app.quiz){ html += '<p><strong>Quiz Score:</strong> ' + (app.quiz.percent || '-') + '% (' + (app.quiz.correct || 0) + '/' + (app.quiz.total || 0) + ')</p>'; }
+          html += '<p style="margin-top:12px; color:var(--space-cadet-1);">Status: <strong>Received</strong></p>';
+          out.innerHTML = html;
+        }
+      }catch(e){ out.innerHTML = '<p>Error reading application data.</p>'; }
+    }
+  </script>
+</body>
+</html>

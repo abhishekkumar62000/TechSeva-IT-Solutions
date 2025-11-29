@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechSeva Internship Program — TechSeva Solutions</title>
+  <link rel="icon" href="./logo.png">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Source+Sans+Pro:wght@600;700&display=swap" rel="stylesheet">
+  <!-- JobPosting structured data for internships -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://techsevasolutions.com/#org",
+        "name": "TechSeva Solutions",
+        "url": "https://techsevasolutions.com"
+      },
+      {
+        "@type": "JobPosting",
+        "title": "Web Development Intern",
+        "description": "Hands-on web development internship: HTML, CSS, JavaScript, small project work.",
+        "employmentType": "INTERNSHIP",
+        "hiringOrganization": { "@id": "https://techsevasolutions.com/#org" },
+        "jobLocation": { "@type": "Place", "address": { "@type": "PostalAddress", "addressCountry": "IN" } }
+      },
+      {
+        "@type": "JobPosting",
+        "title": "App Development Intern",
+        "description": "Mobile app development internship: Android/iOS basics, UI implementation.",
+        "employmentType": "INTERNSHIP",
+        "hiringOrganization": { "@id": "https://techsevasolutions.com/#org" }
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body id="top" class="no-nav">
+
+  <header class="header" data-header>
+    <div class="container">
+      <a href="index.html" class="logo-container">
+        <h3 class="logo1"><span style="color: red;">TechSeva</span></h3>
+        <h3 class="logo2"><span style="color: rgb(246, 151, 8);">IT Solutions</span></h3>
+      </a>
+      <a href="index.html#services2" class="btn">
+        <ion-icon name="chevron-forward-outline" aria-hidden="true"></ion-icon>
+        <span>Get A Quote</span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <article>
+
+      <section class="section wd-hero">
+        <div class="container">
+          <h1 class="wd-title">TechSeva Internship Program</h1>
+          <p class="wd-sub">Join TechSeva to work on real projects, learn from mentors and build a career in tech. Our internship program welcomes passionate learners who want hands-on experience.</p>
+
+          <div class="intern-cta" style="margin-top:18px; display:flex; gap:12px; flex-wrap:wrap;">
+            <a class="btn" href="#apply">Apply Now</a>
+            <a class="btn" href="#roles">Program Roles</a>
+          </div>
+          
+        </div>
+      </section>
+
+      <section class="section" id="roles">
+        <div class="container">
+          <!-- Internship banner: placed above Available Internship Roles -->
+          <div class="internship-banner" role="img" aria-label="TechSeva Internship opportunities banner">
+            <img src="./assets/images/Internship-Banner.png" alt="TechSeva Internship Program banner" loading="lazy" decoding="async">
+            <div class="banner-overlay">
+              <div class="banner-text">
+                <h2 class="banner-title">Available Internship Roles</h2>
+                <p class="banner-sub">Hands-on projects, mentorship and certificates — pick a role and start building.</p>
+                <div class="banner-actions"><a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfQyo0-v4pqtY_Q79I6jmbw17XDzlP2TWoSx-BhNoaDG2kC0g/viewform?usp=header" target="_blank" rel="noopener">Apply Now</a><a class="btn btn-ghost" href="#roles" style="margin-left:8px;">Explore Roles</a></div>
+              </div>
+            </div>
+          </div>
+          <h2 class="h2 section-title underline" style="margin-top:6px;">Available Internship Roles</h2>
+          <div class="roles-toolbar" style="display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-bottom:12px;">
+            <input id="roleSearch" type="search" placeholder="Search roles (e.g. Web, UI/UX)" aria-label="Search internship roles" style="flex:1; max-width:420px; padding:8px 12px; border-radius:8px; border:1px solid #e6eefb;">
+            <div style="display:flex; gap:8px;">
+              <button class="btn btn-small" id="filterAll">All</button>
+              <button class="btn btn-small" id="filterTech">Tech</button>
+              <button class="btn btn-small" id="filterCreative">Creative</button>
+            </div>
+            <div style="margin-left:auto; display:flex; align-items:center; gap:8px;">
+              <span id="rolesCount" aria-live="polite" class="roles-count" style="font-weight:600; color:var(--space-cadet-1);">8 roles</span>
+            </div>
+          </div>
+
+          <div class="roles-grid" id="rolesGrid">
+            <article class="intern-role-card" data-role="Web Development" data-type="tech" tabindex="0">
+              <div class="irc-icon">💻</div>
+              <div class="irc-body"><h3 class="irc-title">Web Development Intern</h3><p class="irc-desc">HTML/CSS/JS, small project tasks, teamwork and code reviews.</p><button class="btn btn-small select-role">Apply</button></div>
+            </article>
+
+            <article class="intern-role-card" data-role="App Development" data-type="tech" tabindex="0">
+              <div class="irc-icon">📱</div>
+              <div class="irc-body"><h3 class="irc-title">App Development Intern</h3><p class="irc-desc">Mobile UI implementation, bug fixes, and testing across devices.</p><button class="btn btn-small select-role">Apply</button></div>
+            </article>
+
+            <article class="intern-role-card" data-role="UI/UX" data-type="creative" tabindex="0">
+              <div class="irc-icon">🎨</div>
+              <div class="irc-body"><h3 class="irc-title">UI/UX Intern</h3><p class="irc-desc">Wireframes, prototyping and visual design work, basic Figma tasks.</p><button class="btn btn-small select-role">Apply</button></div>
+            </article>
+
+            <article class="intern-role-card" data-role="AI/ML" data-type="tech" tabindex="0">
+              <div class="irc-icon">🤖</div>
+              <div class="irc-body"><h3 class="irc-title">AI/ML Intern</h3><p class="irc-desc">Data preprocessing, simple models, experiment tracking and evaluation.</p><button class="btn btn-small select-role">Apply</button></div>
+            </article>
+
+            <article class="intern-role-card" data-role="Content Creator" data-type="creative" tabindex="0">
+              <div class="irc-icon">✍️</div>
+              <div class="irc-body"><h3 class="irc-title">Content Creator Intern</h3><p class="irc-desc">Create blog drafts, social copy, and assist with content planning.</p><button class="btn btn-small select-role">Apply</button></div>
+            </article>
+
+            <article class="intern-role-card" data-role="Social Media" data-type="creative" tabindex="0">
+              <div class="irc-icon">📣</div>
+              <div class="irc-body"><h3 class="irc-title">Social Media Intern</h3><p class="irc-desc">Plan posts, schedule content and monitor engagement metrics.</p><button class="btn btn-small select-role">Apply</button></div>
+            </article>
+
+            <article class="intern-role-card" data-role="WordPress" data-type="tech" tabindex="0">
+              <div class="irc-icon">🔧</div>
+              <div class="irc-body"><h3 class="irc-title">WordPress Intern</h3><p class="irc-desc">Theme tweaks, page builds, plugin basics and maintenance tasks.</p><button class="btn btn-small select-role">Apply</button></div>
+            </article>
+
+            <article class="intern-role-card" data-role="Data Entry" data-type="ops" tabindex="0">
+              <div class="irc-icon">📋</div>
+              <div class="irc-body"><h3 class="irc-title">Data Entry Intern</h3><p class="irc-desc">Manage spreadsheets, data cleaning and simple automation tasks.</p><button class="btn btn-small select-role">Apply</button></div>
+            </article>
+          </div>
+          <div id="noResults" class="no-results" style="display:none; margin-top:12px; text-align:center; color:var(--st-patricks-blue);">No matching roles found. Try a different search.</div>
+          <span id="intern-announce" class="visually-hidden" aria-live="polite" aria-atomic="true"></span>
+        </div>
+      </section>
+
+      <!-- TechSeva Schedule Interview section (moved here: between Roles and Requirements) -->
+      <section class="section" id="schedule">
+        <div class="container">
+          <h2 id="scheduleTitle" class="h2 section-title schedule-title" aria-label="TechSeva Interview Scheduler"
+              role="button" tabindex="0" aria-controls="calendlyInlineMain" aria-expanded="false">
+            <span class="schedule-deco" aria-hidden="true">⟪</span>
+            <span class="schedule-main">TechSeva — Schedule Your Interview</span>
+            <span class="schedule-badge" aria-hidden="true">Quick Slots</span>
+            <span class="schedule-sub">Reserve a quick mentor session — focused, friendly, and fast</span>
+            <span class="schedule-deco" aria-hidden="true">⟫</span>
+            <span class="schedule-underline" aria-hidden="true"></span>
+          </h2>
+          <div class="schedule-intro">
+            <p class="text"><strong>How TechSeva selects interns — a quick overview.</strong></p>
+            <p class="text" style="margin-top:6px;">At TechSeva we look for passion, learning potential and practical fit. Our selection is a mix of resume review, quick skill checks, and a short interview where we discuss your projects and how you think through problems. Below is what to expect and how to prepare.</p>
+
+            <div class="schedule-steps" style="margin-top:12px; display:grid; gap:10px; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
+              <div class="step" style="background:#fff; padding:12px; border-radius:10px; box-shadow:var(--shadow);">
+                <div style="font-weight:700; font-size:1.1rem;">1. Resume Review</div>
+                <div style="font-size:1.3rem; margin-top:6px;">We screen for relevant coursework, projects, and clarity — highlight your strongest project.</div>
+              </div>
+              <div class="step" style="background:#fff; padding:12px; border-radius:10px; box-shadow:var(--shadow);">
+                <div style="font-weight:700; font-size:1.1rem;">2. Quick Skill Check</div>
+                <div style="font-size:1.3rem; margin-top:6px;">A short quiz or task (client-side) helps us understand basics — you may see a 5–10 minute quick quiz for your role.</div>
+              </div>
+              <div class="step" style="background:#fff; padding:12px; border-radius:10px; box-shadow:var(--shadow);">
+                <div style="font-weight:700; font-size:1.1rem;">3. Short Interview</div>
+                <div style="font-size:1.3rem; margin-top:6px;">A 15–25 minute conversation with a mentor — we talk about your project, learning goals, and next steps.</div>
+              </div>
+            </div>
+
+            <div style="margin-top:12px; display:flex; gap:12px; flex-wrap:wrap; align-items:flex-start;">
+              <div style="min-width:280px;">
+                <h4 style="margin:0 0 6px 0;">What to prepare</h4>
+                <ul style="margin:0 0 0 16px; font-size:1.3rem; color:var(--purple-navy);">
+                  <li>One project/demo you can walk us through (GitHub link or live URL).</li>
+                  <li>Briefly explain the problem you solved and your role.</li>
+                  <li>Be ready for a short, practical question related to the role.</li>
+                </ul>
+              </div>
+
+              <div style="flex:1;">
+                <h4 style="margin:0 0 6px 0;">Selection timeline</h4>
+                <ol style="margin:0 0 0 16px; font-size:1.3rem; color:var(--purple-navy);">
+                  <li>We review applications within 3–5 business days.</li>
+                  <li>Shortlisted candidates receive a scheduling link (the button below).</li>
+                  <li>Final decisions announced within 5–7 days after interview.</li>
+                </ol>
+              </div>
+            </div>
+
+            <p style="margin-top:12px; font-size:1.3rem; color:var(--space-cadet-1);">Click <strong>Schedule Interview</strong> to pick a slot (popup), or <em>double-click</em> the button to open an inline scheduler on this page. We recommend keeping your resume and project link ready during the chat.</p>
+          </div>
+
+          <div style="margin-top:12px; display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+            <button id="calendlyOpenBtn" class="btn btn-calendly" type="button" aria-haspopup="dialog" aria-controls="calendlyInlineMain">
+              <span class="btn-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true"><path d="M7 11H9V13H7V11Z" fill="currentColor"/><path d="M11 11H13V13H11V11Z" fill="currentColor"/><path d="M15 11H17V13H15V11Z" fill="currentColor"/><path d="M7 15H9V17H7V15Z" fill="currentColor"/><path d="M11 15H13V17H11V15Z" fill="currentColor"/><path d="M15 15H17V17H15V15Z" fill="currentColor"/><path d="M19 4H18V2H16V4H8V2H6V4H5C3.9 4 3 4.9 3 6V20C3 21.1 3.9 22 5 22H19C20.1 22 21 21.1 21 20V6C21 4.9 20.1 4 19 4ZM19 20H5V9H19V20Z" fill="currentColor"/></svg></span>
+              <span class="btn-label">Schedule Interview</span>
+            </button>
+            <div id="calendlyInlineMain" aria-hidden="true" style="display:none; width:100%; margin-top:12px;">
+              <div class="calendly-inline-widget" data-url="https://calendly.com/abhiydv23096/new-meeting-1" style="min-width:320px;height:640px;"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="requirements">
+        <div class="container">
+          <h2 class="h2 section-title underline">Requirements</h2>
+          <ul class="text" style="margin-left:18px; margin-top:8px;">
+            <li>Personal laptop or desktop</li>
+            <li>Reliable internet connection</li>
+            <li>Basic skills related to the role (HTML/CSS/JS for web, design basics for UI/UX, etc.)</li>
+            <li>Availability ~1–2 hours per day (flexible)</li>
+            <li>Good communication and willingness to learn</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section" id="benefits">
+        <div class="container">
+          <h2 class="h2 section-title underline">Benefits</h2>
+
+          <div class="benefits-grid" style="margin-top:8px;">
+            <div class="benefit-card" tabindex="0" role="button" aria-pressed="false">
+              <div class="bc-icon">💼</div>
+              <h3 class="bc-title">Practical Project Experience</h3>
+              <p class="bc-desc">Work on real client projects with clear deliverables — add demonstrable work to your resume and portfolio.</p>
+              <p class="bc-more">You’ll own small features, ship code, and see how production feedback drives improvements — ideal for building confidence and interview talking points.</p>
+            </div>
+
+            <div class="benefit-card" tabindex="0" role="button" aria-pressed="false">
+              <div class="bc-icon">📁</div>
+              <h3 class="bc-title">Portfolio & Demos</h3>
+              <p class="bc-desc">Build GitHub repositories and live demos you can show to recruiters and in interviews.</p>
+              <p class="bc-more">Receive guidance to structure projects, document your work and create a clean portfolio that recruiters notice.</p>
+            </div>
+
+            <div class="benefit-card" tabindex="0" role="button" aria-pressed="false">
+              <div class="bc-icon">🧭</div>
+              <h3 class="bc-title">Mentorship & Code Reviews</h3>
+              <p class="bc-desc">Regular feedback from senior developers and designers to accelerate your learning curve.</p>
+              <p class="bc-more">Weekly check-ins, task reviews and focused suggestions to help you improve quickly.</p>
+            </div>
+
+            <div class="benefit-card" tabindex="0" role="button" aria-pressed="false">
+              <div class="bc-icon">🛠️</div>
+              <h3 class="bc-title">Job-Ready Tools</h3>
+              <p class="bc-desc">Hands-on experience with Git, debugging, basic deployment and team workflows used in industry.</p>
+              <p class="bc-more">Learn branching strategies, PR reviews, basic CI steps, and simple deployment so you're ready for real teams.</p>
+            </div>
+
+            <div class="benefit-card" tabindex="0" role="button" aria-pressed="false">
+              <div class="bc-icon">🏅</div>
+              <h3 class="bc-title">Certificate & LOR</h3>
+              <p class="bc-desc">Receive a certificate on completion; top performers will be eligible for recommendation letters.</p>
+              <p class="bc-more">Certificates highlight role work on your resume; LORs strengthen applications for jobs or higher studies.</p>
+            </div>
+
+            <div class="benefit-card" tabindex="0" role="button" aria-pressed="false">
+              <div class="bc-icon">🎯</div>
+              <h3 class="bc-title">Interview Prep</h3>
+              <p class="bc-desc">Mock interviews, resume feedback and soft-skill coaching to help you convert internships into jobs.</p>
+              <p class="bc-more">Practice interviews with mentors, get tailored feedback and a checklist to improve your placement readiness.</p>
+            </div>
+
+            <div class="benefit-card" tabindex="0" role="button" aria-pressed="false">
+              <div class="bc-icon">🚀</div>
+              <h3 class="bc-title">Path to Full-Time</h3>
+              <p class="bc-desc">High-performing interns are first in line for open roles and full-time offers.</p>
+              <p class="bc-more">Consistent performance and initiative often lead to direct hiring or strong referrals.</p>
+            </div>
+
+            <div class="benefit-card" tabindex="0" role="button" aria-pressed="false">
+              <div class="bc-icon">🤝</div>
+              <h3 class="bc-title">Networking & Contacts</h3>
+              <p class="bc-desc">Connect with mentors, clients and peers — valuable references for future job searches.</p>
+              <p class="bc-more">Build relationships, receive referrals, and join a community that helps beyond the internship.</p>
+            </div>
+          </div>
+
+          <p style="margin-top:12px; color:var(--space-cadet-1);">TechSeva — Why choose us: Small teams, personalized mentorship, client-facing projects, placement support and certificates to make you job-ready as a fresher.</p>
+
+          <!-- Certificate Showcase -->
+          <section class="section" id="certificate">
+            <div class="container">
+              <h2 class="h2 section-title underline">Internship Certificate</h2>
+              <div class="cert-wrap" style="display:flex; gap:16px; align-items:center; flex-wrap:wrap; margin-top:8px;">
+                <div style="max-width:320px;">
+                  <button id="openCertBtn" class="cert-thumb-btn" aria-haspopup="dialog" aria-controls="certModal" style="border:0; background:transparent; padding:0; cursor:pointer;">
+                    <img src="./Certificate.png" alt="TechSeva Internship Certificate preview" id="certThumb" style="width:100%; border-radius:8px; box-shadow:var(--shadow);" loading="lazy" decoding="async">
+                  </button>
+                  <div style="margin-top:8px; display:flex; gap:8px;">
+                    <a href="./Certificate.png" download="TechSeva_Internship_Certificate.png" class="btn">Download Certificate</a>
+                    <button id="openCertBtn2" class="btn btn-ghost">View</button>
+                  </div>
+                </div>
+                <div style="flex:1; min-width:260px;">
+                  <p style="font-size:1.15rem; margin:0 0 8px 0;"><strong>TechSeva Achievement Certificate</strong></p>
+                  <p style="margin:0 0 8px 0; color:var(--space-cadet-1);">After successfully completing the internship and building multiple real projects, TechSeva awards an official Achievement Certificate. This certificate verifies hands-on experience with real client work — making it easier to get jobs or internships later.</p>
+                  <ul style="margin:6px 0 0 18px;">
+                    <li><strong>Real projects:</strong> Earned after completing project milestones and reviews.</li>
+                    <li><strong>Useful for hiring:</strong> Helps recruiters validate practical experience.</li>
+                    <li><strong>Recommendation letters:</strong> Top performers may receive LORs on request.</li>
+                  </ul>
+                  <p style="margin-top:8px; font-style:italic; color:#2d2d2d;">TechSeva ka Achievement Certificate deta hai — real internship se future me job milne me aasani hoti hai.</p>
+                </div>
+              </div>
+
+              <!-- Certificate modal -->
+              <div id="certModal" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="certTitle" style="display:none;">
+                <div class="modal-dialog" role="document" style="max-width:940px; margin:40px auto; padding:18px; position:relative;">
+                  <button class="modal-close" id="closeCert" aria-label="Close certificate viewer" style="position:absolute; right:12px; top:12px;">✕</button>
+                  <h3 id="certTitle" class="h3">TechSeva — Internship Certificate</h3>
+                  <div style="margin-top:12px; text-align:center;">
+                    <img src="./Certificate.png" alt="Full size TechSeva Certificate" id="certFull" style="width:100%; border-radius:6px; box-shadow:var(--shadow);" loading="lazy" decoding="async">
+                    <div style="margin-top:12px; display:flex; gap:8px; justify-content:center; align-items:center;">
+                      <a href="./Certificate.png" download="TechSeva_Internship_Certificate.png" class="btn">Download Certificate</a>
+                      <button id="certPrint" class="btn btn-ghost">Print</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <style>
+              /* Lightweight styles scoped to certificate section */
+              #certificate .cert-thumb-btn img{transition:transform .18s ease, box-shadow .18s ease;}
+              #certificate .cert-thumb-btn:hover img{transform:translateY(-4px) scale(1.01); box-shadow:0 12px 30px rgba(24,36,70,0.12);} 
+              .modal-overlay{position:fixed; left:0; top:0; right:0; bottom:0; background:rgba(7,12,26,0.6); z-index:2000; display:flex; align-items:center; justify-content:center; padding:20px;} 
+              .modal-dialog{background:#fff; border-radius:10px; max-height:90vh; overflow:auto;} 
+              .modal-close{background:transparent; border:0; font-size:20px; cursor:pointer;} 
+              @media(max-width:720px){ .modal-dialog{width:100%; height:100%; border-radius:0; margin:0; padding:12px;} }
+              </style>
+            </div>
+          </section>
+
+          <div id="apply" style="margin-top:18px; display:flex; gap:12px; flex-wrap:wrap;">
+            <a class="btn" href="#apply-form" id="openApplyInline">Apply Now — On this page</a>
+            <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfQyo0-v4pqtY_Q79I6jmbw17XDzlP2TWoSx-BhNoaDG2kC0g/viewform?usp=header" target="_blank" rel="noopener">Apply via Google Form</a>
+            </div>
+          </div>
+
+          <!-- Enhanced Modal Apply Form (hidden by default) -->
+          <div id="apply-form" class="apply-form modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="applyTitle">
+            <div class="modal-dialog" role="document">
+              <button class="modal-close" id="closeApply" aria-label="Close application dialog">✕</button>
+              <h3 id="applyTitle" class="h3">Apply for Internship</h3>
+
+              <form id="internForm" action="https://formspree.io/f/your-form-id" method="POST" enctype="multipart/form-data">
+                <div class="form-grid">
+                  <div>
+                    <label for="name">Full name *</label>
+                    <input type="text" id="name" name="name" required placeholder="Your full name">
+                  </div>
+
+                  <div>
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required placeholder="you@example.com">
+                  </div>
+
+                  <div>
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210">
+                  </div>
+
+                  <div>
+                    <label for="college">College / Organization</label>
+                    <input type="text" id="college" name="college" placeholder="Your college or organization">
+                  </div>
+
+                  <div>
+                    <label for="degree">Degree / Program</label>
+                    <input type="text" id="degree" name="degree" placeholder="B.Tech / BSc / Diploma">
+                  </div>
+
+                  <div>
+                    <label for="semester">Year / Semester</label>
+                    <input type="text" id="semester" name="semester" placeholder="3rd year / Semester 6">
+                  </div>
+
+                  <div>
+                    <label for="linkedin">LinkedIn</label>
+                    <input type="url" id="linkedin" name="linkedin" placeholder="https://www.linkedin.com/in/yourname">
+                  </div>
+
+                  <div>
+                    <label for="portfolio">Portfolio / GitHub</label>
+                    <input type="url" id="portfolio" name="portfolio" placeholder="https://github.com/yourname">
+                  </div>
+
+                  <div>
+                    <label for="role">Role applying for *</label>
+                    <select id="role" name="role" required>
+                      <option value="Web Development">Web Development Intern</option>
+                      <option value="App Development">App Development Intern</option>
+                      <option value="UI/UX">UI/UX Intern</option>
+                      <option value="AI/ML">AI/ML Intern</option>
+                      <option value="Content">Content Creator Intern</option>
+                      <option value="Social">Social Media Intern</option>
+                      <option value="WordPress">WordPress Intern</option>
+                      <option value="Data Entry">Data Entry Intern</option>
+                    </select>
+                  </div>
+
+                  <div class="full">
+                    <label for="skills">Key skills (comma separated)</label>
+                    <input type="text" id="skills" name="skills" placeholder="HTML, CSS, JavaScript">
+                  </div>
+
+                  <div class="full">
+                    <label for="availability">Availability / preferred start date</label>
+                    <input type="text" id="availability" name="availability" placeholder="e.g. Immediately / From 01-01-2026">
+                  </div>
+
+                  <div class="full">
+                    <label for="message">Why should we pick you? (short)</label>
+                    <textarea id="message" name="message" rows="4" placeholder="A short pitch about you"></textarea>
+                  </div>
+
+                  <div>
+                    <label for="resume">Upload resume (PDF)</label>
+                    <input type="file" id="resume" name="resume" accept="application/pdf">
+                  </div>
+
+                  <div>
+                    <label for="consent">Consent</label>
+                    <label class="checkbox-inline"><input type="checkbox" id="consent" name="consent"> I agree to be contacted regarding this internship.</label>
+                  </div>
+                </div>
+
+                <div class="form-actions" style="margin-top:12px; display:flex; gap:8px; align-items:center;">
+                  <button type="submit" class="btn">Submit Application</button>
+                  <button type="button" class="btn btn-ghost" id="closeApplyBottom">Cancel</button>
+                  <div id="formProgress" aria-hidden="true" style="margin-left:auto; font-size:13px; color:var(--purple-navy); display:none">Submitting…</div>
+                </div>
+              </form>
+
+              <div id="applySuccess" class="apply-success" aria-hidden="true" style="display:none; text-align:center; padding:18px;">
+                <h3 class="h3 success-title">Thanks for applying!</h3>
+                <p id="successMsg" style="margin-top:8px; color:var(--space-cadet-1)"></p>
+                <div style="margin-top:12px;"><button class="btn" id="closeSuccess">Close</button></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-bottom">
+      <p class="copyright">&copy; 2025 <a href="index.html" class="copyright-link">TechSeva Solutions</a>. All Right Reserved — <a href="./internships.html" class="copyright-link">Internships</a></p>
+    </div>
+  </footer>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <!-- Fuse.js for fuzzy search -->
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2/dist/fuse.min.js"></script>
+  <!-- Quiz modal (for quick pre-screening) -->
+  <div id="quiz-modal" class="quiz-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="quizTitle">
+    <div class="quiz-dialog">
+      <button class="modal-close" id="closeQuiz" aria-label="Close quiz">✕</button>
+      <h3 id="quizTitle" class="h3">Role Quick Quiz</h3>
+      <div id="quizContent">
+        <!-- Questions injected dynamically -->
+      </div>
+      <div style="margin-top:12px; display:flex; gap:8px; align-items:center;">
+        <button class="btn" id="submitQuiz">Submit Quiz</button>
+        <button class="btn btn-ghost" id="cancelQuiz">Cancel</button>
+        <div id="quizResult" style="margin-left:auto; font-size:13px; color:var(--purple-navy); display:none"></div>
+      </div>
+    </div>
+  </div>
+  <script src="./assets/js/internships.js"></script>
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript"></script>
+  <script>
+    (function(){
+      const btn = document.getElementById('calendlyOpenBtn');
+      if(!btn) return;
+
+      // find or create inline container; prefer the element inside #schedule if present
+      let cInline = document.getElementById('calendlyInlineMain');
+      if(!cInline){
+        const scheduleSection = document.getElementById('schedule');
+        cInline = document.createElement('div');
+        cInline.id = 'calendlyInlineMain';
+        cInline.style.display = 'none';
+        cInline.style.marginTop = '12px';
+        cInline.innerHTML = '<div class="calendly-inline-widget" data-url="https://calendly.com/abhiydv23096/new-meeting-1" style="min-width:320px;height:640px;"></div>';
+        if(scheduleSection){ scheduleSection.querySelector('.container').appendChild(cInline); }
+        else {
+          const ctaWrap = document.getElementById('apply'); if(ctaWrap) ctaWrap.parentNode.insertBefore(cInline, ctaWrap.nextSibling);
+        }
+      }
+
+      function openCalendlyPopup(prefill){
+        const url = 'https://calendly.com/abhiydv23096/new-meeting-1';
+        try{
+          if(window.Calendly && typeof Calendly.initPopupWidget === 'function'){
+            if(prefill && (prefill.name || prefill.email)){
+              Calendly.initPopupWidget({ url: url, prefill: prefill });
+            } else {
+              Calendly.initPopupWidget({ url: url });
+            }
+            return false;
+          }
+        }catch(e){/* ignore */}
+        // fallback
+        const qp = [];
+        if(prefill){ if(prefill.name) qp.push('name=' + encodeURIComponent(prefill.name)); if(prefill.email) qp.push('email=' + encodeURIComponent(prefill.email)); }
+        const fu = qp.length ? (url + '?' + qp.join('&')) : url;
+        window.open(fu, '_blank');
+      }
+
+      btn.addEventListener('click', function(){
+        // try to prefill with current form values if present
+        const form = document.getElementById('internForm');
+        let prefill = null;
+        if(form){ const name = (form.querySelector('[name="name"]') || {}).value || ''; const email = (form.querySelector('[name="email"]') || {}).value || ''; if(name || email) prefill = { name, email }; }
+        openCalendlyPopup(prefill);
+      });
+
+      // subtle attention animation: pulse for a short time after page load
+      try{ btn.classList.add('pulse'); setTimeout(function(){ btn.classList.remove('pulse'); }, 8000); }catch(e){}
+
+      // double-click button: toggle inline embed using open class for animation
+      btn.addEventListener('dblclick', function(){
+        try{
+          const isOpen = cInline.classList.toggle('open');
+          if(isOpen){ cInline.setAttribute('aria-hidden','false'); cInline.style.display = ''; }
+          else { cInline.setAttribute('aria-hidden','true'); /* keep display but CSS max-height collapses */ }
+        }catch(e){
+          // fallback to simple show/hide
+          cInline.style.display = cInline.style.display === 'none' ? '' : 'none';
+        }
+      });
+    })();
+  </script>
+  <script>
+    // Toggle benefit card expansion for touch/click and keyboard accessibility
+    (function(){
+      const cards = document.querySelectorAll('.benefit-card');
+      if(!cards || !cards.length) return;
+      cards.forEach(card => {
+        card.addEventListener('click', function(e){
+          // prevent clicks on internal links/buttons from toggling
+          if(e.target.closest('a') || e.target.tagName === 'BUTTON') return;
+          const expanded = card.classList.toggle('expanded');
+          card.setAttribute('aria-pressed', expanded ? 'true' : 'false');
+        });
+        card.addEventListener('keydown', function(e){
+          if(e.key === 'Enter' || e.key === ' '){
+            e.preventDefault();
+            const expanded = card.classList.toggle('expanded');
+            card.setAttribute('aria-pressed', expanded ? 'true' : 'false');
+          }
+        });
+      });
+    })();
+  </script>
+  <script>
+    // Certificate modal interactions: open, close, print
+    (function(){
+      const open1 = document.getElementById('openCertBtn');
+      const open2 = document.getElementById('openCertBtn2');
+      const modal = document.getElementById('certModal');
+      const close = document.getElementById('closeCert');
+      const printBtn = document.getElementById('certPrint');
+
+      function openModal(){ if(!modal) return; modal.style.display = 'flex'; modal.setAttribute('aria-hidden','false'); document.body.style.overflow = 'hidden'; }
+      function closeModal(){ if(!modal) return; modal.style.display = 'none'; modal.setAttribute('aria-hidden','true'); document.body.style.overflow = ''; }
+
+      if(open1) open1.addEventListener('click', openModal);
+      if(open2) open2.addEventListener('click', openModal);
+      if(close) close.addEventListener('click', closeModal);
+      if(modal) modal.addEventListener('click', function(e){ if(e.target === modal) closeModal(); });
+      document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeModal(); });
+
+      if(printBtn){
+        printBtn.addEventListener('click', function(){
+          const img = document.getElementById('certFull');
+          if(!img) return;
+          const w = window.open('');
+          w.document.write('<title>Print Certificate</title>');
+          w.document.write('<img src="'+img.src+'" style="max-width:100%; height:auto; display:block; margin:0 auto;">');
+          w.document.close();
+          w.focus();
+          setTimeout(function(){ w.print(); }, 250);
+        });
+      }
+    })();
+  </script>
+</body>
+
+</html>

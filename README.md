@@ -43,6 +43,11 @@
 
 ---
 
+Backend Setup Admit Dashboard
+
+cd 'C:\Users\DELL\Desktop\TechSeva-IT-Solutions-Agency Agency'
+python -m http.server 8000
+
 ---
 ###  ***🚀 Our Services***
 🌐 Website Development
