@@ -1083,7 +1083,11 @@ html, body { overflow-x: hidden; }
   left: 0;
   width: 100%;
   padding-block: 14px;
+  z-index: 9999;
 }
+
+/* Utility to disable page scrolling when overlays/menus are open */
+.no-scroll { overflow: hidden; height: 100%; }
 
 
 
@@ -1131,15 +1135,18 @@ html, body { overflow-x: hidden; }
 
 .navbar {
   background-color: var(--white);
+  /* default desktop-like panel — adjusted on mobile with media queries */
   position: fixed;
   top: 0;
-  left: -280px;
+  left: 0;
   width: 100%;
   max-width: 280px;
-  min-height: 100%;
+  min-height: 100vh;
   padding: 20px;
-  visibility: hidden;
-  transition: 0.25s var(--cubic-in);
+  visibility: visible;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out, box-shadow 0.2s ease;
+  z-index: 10002; /* ensure navbar sits above overlay and widgets */
 }
 
 
@@ -1203,7 +1210,7 @@ html, body { overflow-x: hidden; }
   position: fixed;
   inset: 0;
   background-color: var(--black_70);
-  z-index: 1;
+  z-index: 10001; /* sits below the navbar but above page content */
   opacity: 0;
   pointer-events: none;
   transition: var(--transition-2);
@@ -2111,28 +2118,27 @@ html, body { overflow-x: hidden; }
 
 /* Navbar adjustments for mobile */
 @media (max-width: 768px) {
+  /* Fullscreen slide-in navbar on mobile */
   .navbar {
     left: 0;
-    visibility: visible;
+    width: 100%;
+    max-width: none;
+    min-height: 100vh;
+    height: 100vh;
     transform: translateX(-100%);
-    transition: transform 0.3s ease-in-out;
+    transition: transform 320ms cubic-bezier(.2,.9,.2,1);
+    box-shadow: 0 30px 80px rgba(6,12,20,0.28);
+    z-index: 10002;
   }
 
   .navbar.active {
     transform: translateX(0);
   }
 
-  .nav-open-btn {
-    display: block;
-  }
+  .nav-open-btn { display: block; z-index: 10003; position: relative; }
+  .nav-close-btn { display: block; z-index: 10004; position: relative; }
 
-  .nav-close-btn {
-    display: block;
-  }
-
-  .overlay {
-    display: block;
-  }
+  .overlay { display: block; z-index: 10001; }
 }
 
 
@@ -2238,7 +2244,7 @@ html, body { overflow-x: hidden; }
 .ba-clip { position:absolute; top:0; left:0; bottom:0; overflow:hidden; }
 
 /* Floating chat/schedule button */
-.floating-cta { position:fixed; right:18px; bottom:18px; z-index:9999; display:flex; gap:8px; flex-direction:column; }
+.floating-cta { position:fixed; right:18px; bottom:18px; z-index:1000 !important; display:flex; gap:8px; flex-direction:column; }
 .floating-cta a, .floating-cta button { background:var(--winter-sky); color:#fff; padding:12px 14px; border-radius:999px; box-shadow:var(--shadow); border:none; }
 .promo-banner { background: linear-gradient(90deg, var(--winter-sky), var(--purple-navy)); border-radius:12px; padding:18px; color:#fff; box-shadow: var(--shadow); margin-bottom:20px; }
 .promo-badge { background:#fff; color:var(--purple-navy); padding:6px 10px; border-radius:999px; font-weight:700; box-shadow:0 6px 18px rgba(0,0,0,0.12); animation:badgeFloat 2.4s ease-in-out infinite; }
@@ -2255,7 +2261,7 @@ html, body { overflow-x: hidden; }
 .flip-card .btn.small { padding:8px 12px; font-size:13px; border-radius:8px; }
 
 /* Quick quote panel */
-.quick-quote { position:fixed; right:-420px; top:120px; width:380px; background:#fff; box-shadow: 0 30px 70px rgba(6,12,34,0.15); border-radius:12px; z-index:99999; transition: right 0.45s cubic-bezier(.2,.9,.2,1); padding:18px; }
+.quick-quote { position:fixed; right:-420px; top:120px; width:380px; background:#fff; box-shadow: 0 30px 70px rgba(6,12,34,0.15); border-radius:12px; z-index:1000; transition: right 0.45s cubic-bezier(.2,.9,.2,1); padding:18px; }
 .quick-quote.open { right:18px; }
 .quick-quote h4 { margin:0 0 8px 0; }
 .quick-quote .qq-row { display:flex; gap:8px; align-items:center; }

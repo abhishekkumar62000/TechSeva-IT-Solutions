@@ -36,28 +36,46 @@ document.addEventListener('DOMContentLoaded', function () {
   const navbar = document.querySelector('[data-navbar]');
   const overlay = document.querySelector('[data-overlay]');
 
-  navOpenBtn.addEventListener('click', function () {
+  // Defensive helpers: ensure elements exist before attaching listeners
+  function openNav() {
+    if (!navbar || !overlay) return;
     navbar.classList.add('active');
     overlay.classList.add('active');
-  });
+    navbar.setAttribute('aria-hidden', 'false');
+    if (navOpenBtn) navOpenBtn.setAttribute('aria-expanded', 'true');
+    // prevent background scroll while nav is open
+    document.documentElement.classList.add('no-scroll');
+    document.body.classList.add('no-scroll');
+  }
 
-  navCloseBtn.addEventListener('click', function () {
+  function closeNav() {
+    if (!navbar || !overlay) return;
     navbar.classList.remove('active');
     overlay.classList.remove('active');
-  });
+    navbar.setAttribute('aria-hidden', 'true');
+    if (navOpenBtn) navOpenBtn.setAttribute('aria-expanded', 'false');
+    document.documentElement.classList.remove('no-scroll');
+    document.body.classList.remove('no-scroll');
+  }
 
-  overlay.addEventListener('click', function () {
-    navbar.classList.remove('active');
-    overlay.classList.remove('active');
-  });
+  // Use pointer events for better mobile reliability; fall back to click
+  if (navOpenBtn) {
+    navOpenBtn.addEventListener('pointerdown', function (e) { e.preventDefault(); openNav(); });
+    navOpenBtn.addEventListener('click', function (e) { e.preventDefault(); openNav(); });
+  }
 
-  const navbarLinks = document.querySelectorAll("[data-navbar-link]");
+  if (navCloseBtn) {
+    navCloseBtn.addEventListener('pointerdown', function (e) { e.preventDefault(); closeNav(); });
+    navCloseBtn.addEventListener('click', function (e) { e.preventDefault(); closeNav(); });
+  }
 
-  for (let i = 0; i < navbarLinks.length; i++) {
-    navbarLinks[i].addEventListener("click", function () {
-      navbar.classList.remove("active");
-      overlay.classList.remove("active");
-    });
+  if (overlay) {
+    overlay.addEventListener('click', function () { closeNav(); });
+  }
+
+  const navbarLinks = document.querySelectorAll('[data-navbar-link]');
+  if (navbarLinks && navbarLinks.length) {
+    navbarLinks.forEach(link => link.addEventListener('click', function () { closeNav(); }));
   }
 
 });
