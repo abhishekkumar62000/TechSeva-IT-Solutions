@@ -162,6 +162,104 @@ body {
 \*-----------------------------------*/
 
 .container { padding-inline: 15px; }
+/* Schedule Title Styles */
+.schedule-title{
+  display:block;
+  line-height:1.05;
+  margin:0 0 12px 0;
+  padding:6px 0;
+  position:relative;
+  overflow:visible;
+  cursor:pointer;
+}
+.schedule-title .schedule-main{
+  display:block;
+  font-size:2.2rem;
+  font-weight:700;
+  background: linear-gradient(90deg, #2a3cff, #8b5cf6, #ff6b6b);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: transform .45s cubic-bezier(.2,.9,.3,1), text-shadow .35s ease;
+}
+.schedule-title:focus{ outline: none; box-shadow: 0 0 0 4px rgba(139,92,246,0.12); border-radius:6px; }
+.schedule-title .schedule-badge{
+  display:inline-block;
+  background: linear-gradient(90deg,#ffd371,#ff9a9e);
+  color:#222;
+  font-weight:700;
+  padding:6px 10px;
+  font-size:0.9rem;
+  border-radius:999px;
+  margin-left:10px;
+  vertical-align:middle;
+  box-shadow:0 6px 18px rgba(139,92,246,0.06);
+  animation: badgePulse 2200ms infinite;
+}
+
+@keyframes badgePulse{ 0%{ transform:translateY(0);} 50%{ transform:translateY(-4px);} 100%{ transform:translateY(0);} }
+
+.schedule-title .schedule-underline{
+  display:block;
+  height:4px;
+  width:100%;
+  margin-top:10px;
+  border-radius:999px;
+  background: linear-gradient(90deg,#2a3cff,#8b5cf6,#ff6b6b);
+  transform-origin:left center;
+  transform: scaleX(0);
+  transition: transform .9s cubic-bezier(.2,.9,.3,1);
+}
+.schedule-title.in-view .schedule-underline{ transform: scaleX(1); }
+.schedule-title .schedule-sub{
+  display:block;
+  font-size:0.95rem;
+  margin-top:6px;
+  color:var(--space-cadet-1);
+  font-weight:600;
+  opacity:0.95;
+}
+.schedule-title .schedule-deco{
+  color:var(--st-patricks-blue);
+  font-size:1.1rem;
+  margin:0 8px;
+  display:inline-block;
+  vertical-align:middle;
+  transform-origin:center;
+  transition:transform .8s cubic-bezier(.2,.9,.3,1);
+}
+
+/* entrance animation when in view */
+.schedule-title{opacity:0; transform:translateY(12px); transition:opacity .6s ease, transform .6s cubic-bezier(.2,.9,.3,1);} 
+.schedule-title.in-view{opacity:1; transform:translateY(0);} 
+.schedule-title.in-view .schedule-main{animation:headlinePop .9s cubic-bezier(.2,.9,.3,1) both;} 
+.schedule-title.in-view .schedule-deco{transform:rotate(-6deg) scale(1.05);}
+
+@keyframes headlinePop{
+  0%{ transform: translateY(14px) scale(.98); opacity:0; }
+  60%{ transform: translateY(-6px) scale(1.02); opacity:1; }
+  100%{ transform: translateY(0) scale(1); }
+}
+
+/* sparkle particles on click */
+.schedule-title{position:relative}
+.schedule-title .spark{position:absolute; width:10px; height:10px; border-radius:50%; pointer-events:none; transform:translate(-50%,-50%) scale(0.8); opacity:1; animation:spark 700ms cubic-bezier(.2,.9,.3,1); mix-blend-mode:screen}
+@keyframes spark{
+  0%{ transform:translate(-50%,-50%) scale(0.8); opacity:1 }
+  40%{ transform:translate(calc(-50% + var(--dx,0) ), calc(-50% + var(--dy,0)) ) scale(1.6); opacity:0.95 }
+  100%{ transform:translate(calc(-50% + var(--dx,0) ), calc(-50% + var(--dy,0)) ) scale(0.2); opacity:0 }
+}
+
+/* hover micro-interaction */
+.schedule-title:hover .schedule-main{ transform: translateY(-2px) scale(1.01); text-shadow:0 6px 20px rgba(139,92,246,0.12);} 
+
+/* Responsive adjustments */
+@media (max-width: 640px){
+  .schedule-title .schedule-main{ font-size:1.45rem; }
+  .schedule-title .schedule-sub{ font-size:0.98rem; }
+  .schedule-title .schedule-badge{ font-size:0.82rem; padding:5px 8px; }
+}
+
 
 .h2,
 .h3 { font-family: var(--ff-source-sans-pro); }
@@ -176,6 +274,79 @@ body {
   border-radius: 0 25px;
   transition: var(--transition-2);
 }
+
+/* Ghost variant for lightweight CTAs (used for Calendly toggle) */
+.btn-ghost {
+  background: transparent;
+  color: var(--winter-sky);
+  border: 1px solid rgba(13,93,255,0.08);
+  padding: 10px 18px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Special Calendly CTA: visible, with icon and entrance animation */
+.btn-calendly {
+  background-image: linear-gradient(90deg,var(--winter-sky),var(--ksu-purple));
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 999px;
+  box-shadow: 0 8px 30px rgba(12,40,100,0.12);
+  align-items: center;
+  display: inline-flex;
+  gap: 10px;
+  will-change: transform;
+  animation: btnEntrance .9s cubic-bezier(.2,.9,.2,1);
+}
+
+.btn-calendly:focus, .btn-calendly:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(12,40,100,0.14); }
+
+/* Icon inside CTA */
+.btn-icon { display:inline-flex; width:22px; height:22px; align-items:center; justify-content:center; background:rgba(255,255,255,0.95); color:var(--winter-sky); border-radius:6px; box-shadow:0 6px 16px rgba(12,40,100,0.08); transition: transform .28s var(--cubic-out), box-shadow .28s; }
+.btn-calendly .btn-icon svg { display:block; width:14px; height:14px; }
+
+.btn-calendly:hover .btn-icon { transform: translateY(-3px) scale(1.06); box-shadow:0 12px 30px rgba(12,40,100,0.12); }
+
+/* Small label tweak for compact layout */
+.btn-label { display:inline-block; font-weight:600; }
+
+/* Entrance animation for the CTA */
+@keyframes btnEntrance {
+  0% { transform: translateY(6px) scale(.98); opacity:0 }
+  60% { transform: translateY(-4px) scale(1.02); opacity:1 }
+  100% { transform: translateY(0) scale(1); opacity:1 }
+}
+
+/* Gentle subtle bounce to draw attention (use sparingly) */
+.btn-calendly.pulse { animation: pulse 2.4s ease-in-out infinite; }
+
+/* Ripple effect for CTAs */
+.btn-calendly { position: relative; overflow: hidden; }
+.btn-calendly .ripple { position: absolute; border-radius: 50%; transform: scale(0); opacity: 0.8; pointer-events: none; }
+.btn-calendly .ripple.animate { animation: rippleGrow 600ms cubic-bezier(.2,.9,.2,1); }
+@keyframes rippleGrow { 0% { transform: scale(0); opacity:0.7 } 70% { transform: scale(1.8); opacity:0.35 } 100% { transform: scale(2.4); opacity:0 } }
+
+/* Icon spin while Calendly popup initializes */
+.btn-calendly .btn-icon.icon-spin { animation: iconSpin .72s linear; }
+@keyframes iconSpin { 0% { transform: rotate(0deg) } 100% { transform: rotate(360deg) } }
+
+/* Particle burst on click for delight */
+.cal-particle { position: absolute; width:8px; height:8px; border-radius:50%; opacity:0.95; pointer-events:none; transform-origin:center; }
+
+/* Inline Calendly container slide down/up */
+#calendlyInlineMain { transition: max-height 420ms cubic-bezier(.2,.9,.2,1), opacity 320ms ease; overflow: hidden; max-height: 0; opacity: 0; }
+#calendlyInlineMain.open { max-height: 900px; opacity: 1; }
+
+/* When inline opens, give a subtle entrance to widget */
+.calendly-inline-widget { transform-origin: top center; transition: transform 420ms cubic-bezier(.2,.9,.2,1), opacity 320ms ease; }
+#calendlyInlineMain.open .calendly-inline-widget { transform: translateY(0); opacity:1; }
+
+/* Slight bounce on CTA hover to make it feel alive */
+.btn-calendly:hover { animation: hoverFloat .9s ease-in-out 1; }
+@keyframes hoverFloat { 0% { transform: translateY(0) } 40% { transform: translateY(-6px) } 100% { transform: translateY(0) } }
 
 .btn-small {
   padding: 5px 10px;
@@ -511,6 +682,388 @@ brand-widgets { flex:1; min-width:260px; display:flex; flex-direction:column; ga
 .brand-card .small { font-size:1.25rem; color:var(--black_70) }
 
 @media (max-width:900px){ .brand-inner{flex-direction:column;align-items:center} .brand-mockup{order:2} .brand-widgets{order:1; width:100%} .brand-cards{grid-template-columns:1fr} }
+
+/* -----------------------------
+   Page-specific responsive fixes
+   Target: website-development.html
+   ----------------------------- */
+
+/* Hero layout */
+.wd-hero .wd-title { font-size: clamp(2.2rem, 4.6vw, 3.6rem); line-height: 1.05; margin-bottom: 12px; }
+.hero-row { display:flex; align-items:center; justify-content:center; gap:28px; flex-wrap:wrap; padding-top:6px; }
+.hero-left { max-width:520px; width:100%; text-align:left; }
+.hero-right { max-width:420px; width:100%; display:flex; align-items:center; justify-content:center; }
+.hero-lottie { width:100%; height:320px; max-height:38vh; }
+.wd-sub, .wd-hero-inline { font-size: clamp(1.3rem, 2.2vw, 1.6rem); line-height:1.5; overflow-wrap:break-word; }
+.wd-hero-inline { margin-top:8px; }
+
+/* Demo gallery grid responsiveness */
+.wd-gallery .wd-gallery-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap:16px; margin-top:16px; }
+.wd-gallery-item { background:#fff; border-radius:10px; overflow:hidden; box-shadow:0 10px 30px rgba(12,24,40,0.06); padding:0; text-align:left; }
+.wd-gallery-item img { display:block; width:100%; height:140px; object-fit:cover; }
+.wd-caption { padding:10px; font-size:1.3rem; color:var(--space-cadet-1); }
+
+/* Reduce section padding on small screens to avoid clipping */
+@media (max-width:600px) {
+  :root { --section-padding: 28px; }
+  .container { padding-inline:12px; }
+  .wd-hero .wd-title { font-size: clamp(1.9rem, 6.4vw, 2.6rem); text-align:center; }
+  .hero-left { text-align:center; }
+  .hero-right { margin-top:6px; }
+  .hero-lottie { height:220px; }
+  .wd-gallery-item img { height:120px; }
+  .wd-caption { font-size:1.25rem; }
+}
+
+/* Ensure buttons wrap nicely on small screens */
+.hero-left .btn, .hero-left a.btn { display:inline-block; margin-top:8px; }
+
+/* Make sure long words wrap on Android browsers */
+body, p, h1, h2, h3, h4, .wd-sub { -webkit-hyphens:auto; hyphens:auto; word-wrap:break-word; overflow-wrap:break-word; }
+
+/* Layout safeguards and additional mobile scaling */
+.container { max-width:1200px; margin-inline:auto; }
+
+/* Ensure images never exceed their container and remove fixed heights where possible */
+img { max-width:100%; height:auto; }
+
+/* Make root font-size slightly larger on very small screens to improve readability */
+@media (max-width:480px) {
+  html { font-size: 12px; }
+}
+
+/* Device frame responsive improvements */
+.device-frame { width:320px; height:640px; border-radius:28px; overflow:hidden; background:#fff; box-shadow: 0 20px 60px rgba(3,16,41,0.12); display:flex; align-items:center; justify-content:center; }
+.device-frame img.device-slide { position:absolute; width:100%; height:100%; object-fit:cover; transition:opacity .6s var(--cubic-out), transform .6s var(--cubic-out); z-index:2; }
+
+@media (max-width:700px) {
+  .device-frame { width:46vw; height:calc(46vw * 2); max-width:300px; max-height:640px; }
+}
+
+/* Ensure headings scale down without clipping */
+h1, h2, h3, h4 { line-height:1.15; }
+@media (max-width:600px) {
+  h2.h2, .wd-title { font-size: clamp(1.9rem, 6.6vw, 2.8rem); }
+}
+
+/* Final safety: prevent horizontal overflow on small devices */
+html, body { overflow-x: hidden; }
+
+/* Benefits cards: layout and animations */
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+.benefit-card {
+  background: linear-gradient(180deg,#fff,#fbfdff);
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: var(--shadow);
+  transition: transform .36s var(--cubic-out), box-shadow .36s, background .36s;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  will-change: transform;
+}
+.benefit-card:focus { outline: 3px solid rgba(255,211,123,0.16); }
+.benefit-card:hover, .benefit-card:focus { transform: translateY(-8px) scale(1.02); box-shadow: 0 26px 60px rgba(3,16,41,0.12); }
+.bc-icon { font-size: 2.4rem; width:48px; height:48px; display:flex; align-items:center; justify-content:center; border-radius:10px; background: linear-gradient(90deg,var(--razzmatazz),var(--rajah)); color:#fff; margin-bottom:12px; }
+.bc-title { font-size:1.4rem; margin:0 0 8px 0; color:var(--space-cadet-1); }
+.bc-desc { font-size:1.35rem; color:var(--purple-navy); margin-bottom:6px; }
+.bc-more { font-size:1.3rem; color:var(--black_70); max-height:0; overflow:hidden; transition: max-height .4s ease, opacity .3s ease; opacity:0; margin-top:6px; }
+.benefit-card:hover .bc-more, .benefit-card:focus .bc-more { max-height:240px; opacity:1; }
+
+/* also support programmatic expansion (for touch) */
+.benefit-card.expanded .bc-more { max-height:240px; opacity:1; }
+
+/* ==============================
+   Available Roles - animated cards
+   ============================== */
+.roles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.intern-role-card {
+  background: linear-gradient(180deg,#fff,#fbfdff);
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 14px 40px rgba(3,16,41,0.06);
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  transition: transform .36s var(--cubic-out), box-shadow .36s, filter .36s;
+  transform-origin: center center;
+  will-change: transform, box-shadow;
+  transform: translateY(18px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) scale(.98);
+  opacity: 0;
+}
+.intern-role-card .irc-icon { flex: 0 0 56px; width:56px; height:56px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.6rem; background: linear-gradient(90deg,var(--razzmatazz),var(--rajah)); color:#fff; box-shadow: 0 8px 24px rgba(12,24,40,0.06); }
+.intern-role-card .irc-body { flex: 1; display:flex; flex-direction:column; gap:6px; }
+.intern-role-card .irc-title { font-size:1.45rem; margin:0; color:var(--space-cadet-1); font-weight:700; }
+.intern-role-card .irc-desc { font-size:1.3rem; color:var(--black_70); margin:0; }
+.intern-role-card .select-role { margin-top:8px; align-self:flex-start; }
+
+/* hover/focus interactions */
+.intern-role-card:hover, .intern-role-card.tilted, .intern-role-card:focus { transform: translateY(-10px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) scale(1.02); box-shadow: 0 28px 80px rgba(3,16,41,0.12); filter: saturate(1.03); }
+.intern-role-card:focus { outline: 3px solid rgba(122, 96, 255, 0.12); }
+
+/* small decorative sweep on hover using pseudo element */
+.intern-role-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.06));
+  mix-blend-mode: overlay;
+  opacity: 0;
+  transform: translateX(-20%);
+  transition: transform .9s cubic-bezier(.2,.9,.2,1), opacity .45s ease;
+}
+.intern-role-card:hover::before, .intern-role-card:focus::before { opacity: 1; transform: translateX(0); }
+
+/* entrance animation (staggered by --i variable set in JS) */
+@keyframes roleEntrance {
+  0% { transform: translateY(18px) scale(.98); opacity: 0; }
+  60% { transform: translateY(-6px) scale(1.02); opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+.intern-role-card.role-reveal { animation: roleEntrance .7s cubic-bezier(.2,.9,.2,1) both; animation-delay: calc(var(--i, 0) * 80ms); }
+
+/* small badge and quiz button inside card */
+.intern-role-card .quiz-badge { position: absolute; top: 10px; right: 10px; }
+.intern-role-card .irc-body .btn { margin-top: 6px; }
+
+/* responsive tweaks */
+@media (max-width: 700px) {
+  .intern-role-card { padding: 12px; gap: 10px; }
+  .intern-role-card .irc-icon { width:48px; height:48px; font-size:1.3rem; }
+}
+
+
+/* subtle entrance animation for cards */
+@keyframes cardPop { 0% { transform: translateY(12px) scale(.98); opacity:0 } 60% { transform: translateY(-6px) scale(1.02); opacity:1 } 100% { transform: translateY(0) scale(1); opacity:1 } }
+.benefit-card { animation: cardPop .7s cubic-bezier(.2,.9,.2,1) both; }
+
+/* Reduce motion for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .benefit-card { animation: none; transition: none; }
+  .bc-more { transition: none; }
+}
+
+
+/* Internships CTA small helper */
+.intern-cta { text-align:center; margin-top:12px; }
+.intern-cta .btn { background-image: var(--gradient-1); }
+
+/* Apply form styles */
+.apply-form { display:none; background:#fff; padding:18px; border-radius:10px; box-shadow:0 20px 60px rgba(3,16,41,0.08); margin-top:16px; max-width:720px; }
+.apply-form label { display:block; margin-top:10px; font-weight:600; }
+.apply-form input[type="text"], .apply-form input[type="email"], .apply-form select, .apply-form textarea { width:100%; padding:10px 12px; border:1px solid #e6eefb; border-radius:8px; margin-top:6px; font-size:1.4rem; }
+.apply-form .btn { margin-top:12px; }
+.form-success { display:none; margin-top:12px; padding:10px 12px; background:linear-gradient(90deg,#e6ffef,#e9fff6); border-radius:8px; color:#064; }
+
+@media (max-width:600px){
+  .apply-form { padding:12px; margin-inline:8px; }
+  .apply-form input, .apply-form select, .apply-form textarea { font-size:1.5rem; }
+}
+
+/* Enhanced apply form grid */
+.apply-form .modal-dialog { max-width:720px; width:100%; padding:20px; }
+.apply-form .form-grid{ display:grid; grid-template-columns: 1fr; gap:12px; align-items:start; }
+.apply-form .form-grid .full{ grid-column: 1 / -1 }
+.apply-form label{ display:block; margin-bottom:6px; font-weight:600; font-size:1.3rem }
+.apply-form input[type="text"], .apply-form input[type="email"], .apply-form input[type="url"], .apply-form input[type="tel"], .apply-form select, .apply-form textarea, .apply-form input[type="file"]{ width:100%; padding:10px 12px; border:1px solid #e6eefb; border-radius:8px; font-size:1.4rem }
+.apply-form .checkbox-inline{ display:inline-flex; gap:8px; align-items:center; font-size:1.35rem }
+.apply-form .form-actions .btn{ min-width:140px }
+.apply-form .apply-success{ animation: scaleIn .28s cubic-bezier(.2,.9,.2,1); }
+
+@keyframes scaleIn{ from{ transform:scale(.98); opacity:0 } to{ transform:scale(1); opacity:1 } }
+
+/* Small responsive tweaks */
+@media (max-width:720px){ .apply-form .form-grid{ grid-template-columns: 1fr } .apply-form .modal-dialog{ padding:16px } }
+
+/* Multi-step helpers: show one step at a time */
+.form-step{ display:none }
+.form-step.active{ display:block }
+.form-actions .btn[disabled]{ opacity:0.6; pointer-events:none }
+.form-actions .btn, .form-actions .btn-ghost{ min-width:110px }
+
+
+/* progress / message */
+.apply-form #formProgress{ font-weight:600 }
+
+/* success panel */
+.apply-success .success-title{ color:var(--st-patricks-blue); margin-bottom:6px }
+
+/* Celebration (confetti) styles */
+.celebration-layer{ position:fixed; inset:0; pointer-events:none; z-index:99999; overflow:visible; }
+.confetti-piece{ position:absolute; width:10px; height:14px; border-radius:2px; opacity:0.95; will-change: transform, opacity; transform-origin:center; }
+
+/* small helpers for internships page */
+.resume-info { font-size:1.35rem; color:var(--purple-navy); margin-top:6px; }
+.match-highlight { background: linear-gradient(90deg,#fff8d6,#ffd371); padding:0 4px; border-radius:4px; }
+
+/* Quiz modal */
+.quiz-modal { position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(6,12,20,0.6); z-index:99999; padding:20px; }
+.quiz-modal.open { display:flex; }
+.quiz-dialog { background:#fff; border-radius:12px; padding:18px; max-width:720px; width:100%; box-shadow:0 30px 80px rgba(3,16,41,0.4); }
+.quiz-dialog .question { margin-top:12px; padding:12px; border-radius:8px; background:linear-gradient(180deg,#fff,#fbfdff); }
+.quiz-dialog .question p { margin-bottom:8px; }
+.quiz-dialog .options { display:flex; flex-direction:column; gap:8px; }
+.quiz-dialog .options label { display:flex; gap:8px; align-items:center; }
+/* Enhanced quiz UI */
+.quiz-meta { margin-bottom:8px; }
+.quiz-progress-wrap { width:100%; }
+.quiz-questions .question { background: linear-gradient(180deg,#fff,#fbfdff); padding:12px; border-radius:8px; box-shadow:0 8px 20px rgba(12,24,40,0.06); }
+.quiz-questions .options label { background:#fff; border:1px solid #eef6ff; padding:8px; border-radius:8px; }
+.quiz-questions .options label:hover { transform:translateY(-4px); box-shadow:0 12px 28px rgba(12,24,40,0.06); }
+.quiz-summary { padding:12px; background:linear-gradient(90deg,#e8ffef,#f1fffb); border-radius:8px; }
+.quiz-review { padding:10px; border-radius:8px; background:#fff; margin-bottom:8px; box-shadow:0 10px 30px rgba(12,24,40,0.04); }
+.quiz-badge { display:inline-block; }
+
+/* small pop animation when quiz badge appears */
+.quiz-badge { animation: badgePop .6s cubic-bezier(.2,.9,.2,1); transform-origin:center; }
+@keyframes badgePop { 0% { transform: scale(.6); opacity: 0 } 60% { transform: scale(1.08); opacity: 1 } 100% { transform: scale(1); opacity: 1 } }
+
+/* subtle pulse on role card when badge appears */
+.intern-role-card.badge-highlight { box-shadow: 0 18px 48px rgba(12,24,40,0.12); transform: translateY(-6px); transition: transform .28s, box-shadow .28s; }
+
+@keyframes confetti-fall {
+  0% { transform: translate3d(var(--tx,0px), var(--ty,0px), 0) rotate3d(0,0,1,0deg) scale(1); opacity:1 }
+  70% { opacity:1 }
+  100% { transform: translate3d(calc(var(--tx,0px) + var(--xend,0px)), calc(var(--ty,0px) + 100vh), 0) rotate3d(0,0,1,var(--rot,360deg)) scale(.9); opacity:0 }
+}
+
+@keyframes confetti-spin {
+  0% { transform: rotate(0deg) }
+  100% { transform: rotate(360deg) }
+}
+
+/* small burst animation for success panel */
+.apply-success.burst { animation: popIn .38s cubic-bezier(.2,.9,.2,1); }
+@keyframes popIn { 0% { transform: scale(.96); opacity:0 } 100% { transform: scale(1); opacity:1 } }
+
+
+/* Final stronger mobile rules to avoid clipping and oversized images */
+@media (max-width:420px) {
+  /* Stack hero vertically and center text */
+  .hero-row { flex-direction: column; align-items: center; text-align: center; gap:12px; }
+  .hero-left, .hero-right { max-width:100%; width:100%; }
+  .wd-hero .wd-title { font-size: clamp(1.8rem, 7.5vw, 2.4rem); margin-bottom:8px; }
+  .wd-sub { font-size: 1.45rem; padding-inline:8px; }
+  .wd-hero-inline { font-size: 1.3rem; }
+
+  /* Constrain hero media so it doesn't push content */
+  .hero-image, .hero-lottie { max-height:26vh; height:26vh; width:100%; object-fit:cover; }
+
+  /* Device carousel smaller and keep images visible */
+  .device-frame { width:72vw; height:calc(72vw * 2); max-width:340px; border-radius:20px; }
+  .device-slide { width:100%; height:100%; object-fit:cover; object-position:center top; }
+
+  /* Packages: stack vertically for narrow screens */
+  .packages { display:flex; flex-direction:column; gap:12px; }
+  .package-card { padding:12px; }
+
+  /* Gallery thumbnails smaller */
+  .wd-gallery .wd-gallery-grid { gap:10px; }
+  .wd-gallery-item img { height:100px; }
+
+  /* Tighten spacing site-wide on small screens */
+  :root { --section-padding: 20px; }
+  .section { padding-block: var(--section-padding); }
+
+  /* Reduce hero CTA padding for stacking */
+  .hero-cta { display:flex; gap:8px; flex-wrap:wrap; justify-content:center; }
+
+  /* Avoid tiny fonts in panels */
+  .af-desc, .testimonial-quote, .testimonial-author { font-size:1.35rem; }
+}
+
+/* Very narrow devices (older phones) fallback */
+@media (max-width:360px) {
+  .wd-hero .wd-title { font-size: 1.9rem; }
+  .hero-image, .hero-lottie { max-height:24vh; height:24vh; }
+  .device-frame { width:78vw; height:calc(78vw * 2); }
+  .wd-gallery-item img { height:88px; }
+  html { font-size: 11px; }
+}
+
+/* Emergency overrides for very small phones where images dominate */
+@media (max-width:420px) {
+  /* Make hero image much smaller so text remains primary */
+  .hero-image, .hero-lottie { max-height:16vh !important; height:16vh !important; }
+
+  /* Boost readable font sizes on compact screens */
+  html { font-size: 13px; }
+  body { font-size: 1.75rem; }
+  .wd-hero .wd-title { font-size: clamp(2.0rem, 7.5vw, 2.4rem) !important; }
+  .wd-sub { font-size: 1.6rem !important; }
+  .wd-hero-inline { font-size: 1.45rem !important; }
+
+  /* Ensure hero layout centers and CTAs wrap nicely */
+  .hero-row { flex-direction: column; gap:10px; }
+  .hero-left { order:0; }
+  .hero-right { order:1; }
+  .hero-cta { display:flex; gap:8px; flex-wrap:wrap; justify-content:center; }
+
+  /* Make device carousel and images compact */
+  .device-frame { width:64vw !important; height:calc(64vw * 2) !important; max-width:320px; }
+  .device-slide { object-fit:cover; object-position:center; }
+
+  /* Reduce gallery thumbnail size */
+  .wd-gallery-item img { height:84px !important; }
+
+  /* Reduce vertical spacing so text fits without scrolling too much */
+  :root { --section-padding: 16px; }
+}
+
+/* Target narrow landscape phones */
+@media (max-width:812px) and (orientation:landscape) {
+  .hero-image, .hero-lottie { max-height:22vh !important; height:22vh !important; }
+  .wd-hero .wd-title { font-size: 2.2rem; }
+}
+
+/* Image hero (used on app page) */
+.hero-image { width:100%; height:320px; object-fit:cover; border-radius:8px; box-shadow:0 8px 24px rgba(0,0,0,0.12); max-height:38vh; }
+
+@media (max-width:600px) {
+  .hero-image { height:220px; }
+  .hero-left .hero-cta { display:flex; gap:8px; flex-wrap:wrap; justify-content:center; }
+  .hero-left { text-align:center; }
+}
+
+/* Strong mobile overrides for very small screens */
+@media (max-width:480px) {
+  :root { --section-padding: 22px; }
+  .wd-hero .wd-title { font-size: clamp(2.0rem, 7.2vw, 2.6rem); line-height:1.08; }
+  .wd-sub { font-size: 1.45rem; }
+  .wd-hero-inline { font-size: 1.35rem; }
+  .hero-row { gap:12px; align-items:flex-start; }
+  .hero-right { order:2; }
+  .hero-left { order:1; }
+  .hero-image { max-height:28vh; height:28vh; }
+  .hero-lottie { height:180px; }
+  .btn { padding:10px 18px; font-size:1.5rem; }
+
+  /* Device carousel responsive override */
+  .device-frame { width:46vw; height:calc(46vw * 2); max-width:280px; }
+  .device-slide { position:relative; width:100%; height:100%; object-fit:cover; opacity:1 !important; }
+  .carousel-btn { width:44px; height:44px; font-size:1.6rem; }
+
+  /* Feature cards readability */
+  .af-desc { font-size:1.45rem; }
+  .af-title { font-size:1.6rem; }
+  .af-card { padding:14px; }
+
+  /* Allow feature cards to expand for more text (touch interaction) */
+  .af-card { transition: transform .28s var(--cubic-out), box-shadow .28s; }
+  .af-card .af-desc { max-height:4.2rem; overflow:hidden; transition: max-height .28s ease; }
+  .af-card.expanded .af-desc { max-height:200px; }
+}
+
+/* Improve tap target sizes globally on small screens */
+@media (max-width:600px) {
+  .btn, .filter-btn { padding:10px 16px; font-size:1.5rem; }
+}
 
 
 
@@ -1520,6 +2073,11 @@ brand-widgets { flex:1; min-width:260px; display:flex; flex-direction:column; ga
   .wd-lightbox .lb-prev, .wd-lightbox .lb-next { display:none; }
 }
 
+/* Page-specific: hide main header/navbar on internship page */
+.no-nav .header { display: none !important; }
+.no-nav body, .no-nav main { padding-top: 0 !important; }
+.no-nav .hero { padding-top: 28px; }
+
 /* End gallery */
 
   .hero-title {
@@ -1719,6 +2277,27 @@ brand-widgets { flex:1; min-width:260px; display:flex; flex-direction:column; ga
 
 /* feature card controls */
 .feature .fc-controls { display:flex; justify-content:flex-end; margin-top:8px; }
+/* Internship banner styles (inserted) */
+.internship-banner{ position:relative; width:100%; overflow:hidden; border-radius:12px; margin-bottom:18px; box-shadow:0 6px 20px rgba(16,24,40,0.06); }
+.internship-banner img{ display:block; width:100%; height:220px; object-fit:cover; transition:transform .6s ease; }
+.internship-banner:hover img{ transform:scale(1.04); }
+.internship-banner .banner-overlay{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:linear-gradient(180deg, rgba(6,19,43,0.10), rgba(6,19,43,0.18)); padding:18px; }
+.internship-banner .banner-text{ color:var(--white); text-align:center; max-width:920px; }
+.internship-banner .banner-title{ margin:0; font-size:26px; font-weight:700; text-shadow:0 6px 18px rgba(3,7,18,0.32); }
+.internship-banner .banner-sub{ margin:8px 0 12px; color:rgba(255,255,255,0.92); font-size:15px; }
+.internship-banner .banner-actions .btn{ box-shadow:0 6px 18px rgba(16,24,40,0.12); }
+
+@media (max-width:768px){
+  .internship-banner img{ height:160px; }
+  .internship-banner .banner-title{ font-size:20px; }
+  .internship-banner .banner-sub{ font-size:13px; }
+}
+
+@media (max-width:420px){
+  .internship-banner img{ height:120px; }
+  .internship-banner .banner-text{ padding:6px; }
+  .internship-banner .banner-actions .btn{ padding:8px 10px; font-size:13px; }
+}
 .feature .add-to-cart { padding:6px 10px; font-size:13px; border-radius:8px; }
 
 /* package card controls */
@@ -1762,4 +2341,122 @@ brand-widgets { flex:1; min-width:260px; display:flex; flex-direction:column; ga
   .timeline { grid-template-columns: repeat(2, 1fr); }
   .counters { justify-content:flex-start; }
 }
+
+/* Internship portal — modal, cards and microinteractions */
+/* Roles grid and enhanced role cards */
+.roles-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px;}
+.intern-role-card{
+  background: linear-gradient(180deg,#fff,#fbfdff);
+  border: 1px solid rgba(10,40,80,0.04);
+  border-radius:14px;
+  padding:14px;
+  display:grid;
+  grid-template-columns: 56px 1fr;
+  gap:12px;
+  align-items:start;
+  transition: transform .36s cubic-bezier(.2,.9,.2,1), box-shadow .36s cubic-bezier(.2,.9,.2,1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+}
+.intern-role-card:focus, .intern-role-card:hover{
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 24px 60px rgba(10,30,70,0.12);
+  outline: none;
+}
+.intern-role-card:focus-visible { outline: 3px solid rgba(66,153,225,0.18); outline-offset:4px }
+
+/* icon */
+.intern-role-card .irc-icon{
+  width:56px; height:56px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:24px; background:linear-gradient(90deg,var(--razzmatazz),var(--rajah)); color:#fff; box-shadow:0 10px 30px rgba(18,36,71,0.06);
+}
+
+.irc-body{display:flex; flex-direction:column; gap:6px}
+.irc-title{margin:0; font-size:1.25rem; color:var(--space-cadet-1); font-weight:600}
+.irc-desc{margin:0; color:var(--black_70); max-height:64px; overflow:hidden; transition:max-height .36s ease, color .18s ease}
+.intern-role-card.expanded .irc-desc{max-height:320px}
+
+.irc-meta{display:flex; gap:8px; align-items:center; margin-top:6px}
+.irc-badge{font-size:12px; padding:4px 8px; border-radius:999px; background:rgba(39,76,255,0.08); color:var(--winter-sky); font-weight:600}
+.irc-type{font-size:12px; color:var(--purple-navy); opacity:0.8}
+
+.select-role{margin-top:8px; justify-self:start; padding:8px 12px; border-radius:8px; font-size:14px; background-image:var(--gradient-2); color:#fff; box-shadow:0 8px 28px rgba(18,36,71,0.08); border:0}
+.select-role:active { transform: translateY(1px) }
+
+/* reveal animation classes */
+.role-reveal{opacity:1; transform:none}
+.intern-role-card{opacity:0; transform: translateY(18px) scale(.995)}
+
+/* subtle 3D tilt (applied via JS by adjusting --tx and --ty) */
+.intern-role-card { transition: transform .24s var(--cubic-out), box-shadow .24s var(--cubic-out); will-change:transform; }
+.intern-role-card.tilted { transform: perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(-6px); }
+
+/* highlight matched text */
+.match-highlight{ background: linear-gradient(90deg, rgba(255,229,150,0.35), rgba(255,229,150,0.25)); padding:0 4px; border-radius:4px }
+
+/* No-motion preference */
+@media (prefers-reduced-motion: reduce){ .intern-role-card, .select-role, .irc-desc { transition:none !important; animation:none !important } }
+
+/* Modal overlay */
+.modal-overlay{position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(3,10,20,0.55); z-index:9999; padding:24px}
+.modal-overlay[aria-hidden="false"]{display:flex}
+.modal-dialog{background:#fff; width:100%; max-width:760px; border-radius:12px; padding:20px; box-shadow:0 20px 60px rgba(3,10,30,0.25); transform:translateY(6px); transition:transform .2s ease, opacity .18s ease; position:relative}
+.modal-overlay[aria-hidden="false"] .modal-dialog{transform:none}
+.modal-close{position:absolute; right:18px; top:18px; background:transparent; border:none; font-size:18px; cursor:pointer}
+.modal-close:focus{outline:2px solid rgba(52,120,255,0.18); border-radius:6px}
+.btn-ghost{background:transparent; border:1px solid rgba(0,0,0,0.06);}
+
+/* Stronger override for Calendly CTA to ensure visibility when .btn-ghost is declared later
+   Use a more specific selector so it wins the cascade on pages where .btn-ghost is defined after
+   the original .btn-calendly rules. */
+button.btn.btn-calendly, .btn.btn-calendly {
+  background-image: linear-gradient(90deg,var(--winter-sky),var(--ksu-purple));
+  background-size: 200%;
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 8px 30px rgba(12,40,100,0.12);
+}
+button.btn.btn-calendly .btn-label, .btn.btn-calendly .btn-label { color: #ffffff; }
+button.btn.btn-calendly .btn-icon, .btn.btn-calendly .btn-icon { background: #ffffff; color: var(--winter-sky); }
+
+/* small form success banner */
+.form-success{display:none; padding:10px 12px; margin-top:10px; border-radius:8px; background:linear-gradient(90deg,#ecfdf5,#e6f6ff); color:#064e3b}
+.form-message{padding:8px 12px; border-radius:8px; margin-bottom:8px}
+.form-message.success{background:#e6ffef; color:#056740}
+.form-message.error{background:#fff1f0; color:#7f1d1d}
+
+@media (max-width:700px){
+  .modal-dialog{padding:16px; border-radius:10px}
+  .intern-role-card{padding:12px}
+  .irc-title{font-size:1rem}
+}
+
+/* Improve focus styles inside modal */
+.modal-dialog input:focus, .modal-dialog textarea:focus, .modal-dialog select:focus, .modal-dialog button:focus{ outline:3px solid rgba(52,120,255,0.14); }
+
+/* Make select role button visually stand out on cards */
+.intern-role-card .select-role{ background: linear-gradient(90deg,var(--razzmatazz),var(--rajah)); color:#fff; border-radius:8px; padding:8px 10px; border:0 }
+
+/* subtle expand indicator */
+.intern-role-card::after{ content:'More'; position:absolute; right:12px; bottom:12px; font-size:12px; color:rgba(58,64,84,0.6); }
+.intern-role-card.expanded::after{ content:'Less'; }
+
+/* mobile tweak for grid */
+@media (max-width:520px){
+  .roles-grid{grid-template-columns:1fr}
+}
+
+/* Roles count and no-results */
+.roles-count{background:linear-gradient(90deg,#f0f9ff,#eef6ff); padding:6px 10px; border-radius:999px; font-size:1.3rem}
+.no-results{font-size:1.4rem}
+
+/* Reveal animation for role cards */
+.intern-role-card{opacity:0; transform:translateY(10px); transition:transform .42s cubic-bezier(.2,.9,.2,1), opacity .42s ease, box-shadow .2s}
+.intern-role-card.role-reveal{opacity:1; transform:none}
+
+/* Add a colorful tag chip for role types */
+.role-chip{display:inline-flex; align-items:center; gap:8px; font-size:1.2rem; padding:6px 8px; border-radius:999px; background:linear-gradient(90deg, rgba(106,214,255,0.12), rgba(123,230,255,0.06)); color:var(--winter-sky); border:1px solid rgba(106,214,255,0.08); margin-left:auto}
+
+
 
