@@ -612,6 +612,36 @@ body {
 .testimonial-quote{ font-size:1.6rem; color:var(--space-cadet-1); margin-bottom:12px }
 .testimonial-author{ font-weight:600; font-size:1.4rem; color:var(--st-patricks-blue) }
 
+/* Enhanced testimonials styles */
+.testimonials-wrap { padding: 12px 18px; }
+.testimonials-inner { display:block; max-width:920px; margin:0 auto; }
+.testimonial { display:none; padding:20px; border-radius:14px; background:linear-gradient(180deg,#fff,#fbfdff); box-shadow:0 18px 40px rgba(12,24,40,0.06); transition: opacity .45s ease, transform .45s ease; opacity:0; }
+.testimonial.active { display:block; opacity:1; }
+.t-body { display:flex; gap:14px; align-items:flex-start; }
+.t-quote { font-size:1.6rem; color:var(--space-cadet-1); line-height:1.6; }
+.t-meta { margin-top:10px; font-size:1.35rem; color:var(--purple-navy); }
+.t-name { font-weight:700; color:var(--st-patricks-blue); margin-right:6px; }
+.t-role { color:var(--purple-navy); margin-left:4px; }
+.t-date { color:var(--space-cadet-1); margin-left:6px; font-size:1.25rem }
+
+/* Dots / pagination */
+.test-dots { display:flex; gap:8px; align-items:center; }
+.test-dot { width:12px; height:12px; border-radius:50%; background:#e6eefb; border:1px solid rgba(13,93,255,0.06); cursor:pointer; transition: transform .28s ease, background .28s ease; }
+.test-dot.active { background: linear-gradient(90deg,var(--razzmatazz),var(--rajah)); transform: scale(1.2); box-shadow:0 8px 20px rgba(122,96,255,0.12); }
+.test-controls { gap:10px; }
+
+@media (min-width: 720px) {
+  .testimonials-inner { display:flex; gap:18px; align-items:flex-start; }
+  .testimonial { flex:1; }
+  .t-quote { font-size:1.7rem; }
+}
+
+@media (max-width:600px) {
+  .test-controls { display:flex; gap:8px; align-items:center; }
+  .test-dot { width:10px; height:10px; }
+  .t-quote { font-size:1.45rem; }
+}
+
 .rainbow-text { display:inline-block; background: linear-gradient(90deg,#ff5f6d,#ffc371,#8ae6c1,#6ad6ff,#b39cff); background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: rainbowShift 6s linear infinite; font-weight:700 }
 .name-gradient { background: linear-gradient(90deg,#ffd37a,#ff9a9e,#7be6ff); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent }
 
@@ -780,29 +810,31 @@ html, body { overflow-x: hidden; }
 /* ==============================
    Available Roles - animated cards
    ============================== */
-.roles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.roles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
 .intern-role-card {
+  position: relative;
   background: linear-gradient(180deg,#fff,#fbfdff);
-  border-radius: 14px;
-  padding: 14px;
-  box-shadow: 0 14px 40px rgba(3,16,41,0.06);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 18px 48px rgba(3,16,41,0.06);
   display: flex;
-  gap: 12px;
-  align-items: center;
-  transition: transform .36s var(--cubic-out), box-shadow .36s, filter .36s;
+  gap: 14px;
+  align-items: flex-start;
+  transition: transform .36s var(--cubic-out), box-shadow .36s, filter .36s, background .36s;
   transform-origin: center center;
   will-change: transform, box-shadow;
   transform: translateY(18px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) scale(.98);
   opacity: 0;
+  overflow: visible; /* ensure decorative elements are shown */
 }
-.intern-role-card .irc-icon { flex: 0 0 56px; width:56px; height:56px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.6rem; background: linear-gradient(90deg,var(--razzmatazz),var(--rajah)); color:#fff; box-shadow: 0 8px 24px rgba(12,24,40,0.06); }
-.intern-role-card .irc-body { flex: 1; display:flex; flex-direction:column; gap:6px; }
-.intern-role-card .irc-title { font-size:1.45rem; margin:0; color:var(--space-cadet-1); font-weight:700; }
-.intern-role-card .irc-desc { font-size:1.3rem; color:var(--black_70); margin:0; }
+.intern-role-card .irc-icon { flex: 0 0 64px; width:64px; height:64px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.8rem; background: linear-gradient(90deg,var(--razzmatazz),var(--rajah)); color:#fff; box-shadow: 0 10px 30px rgba(12,24,40,0.08); }
+.intern-role-card .irc-body { flex: 1; display:flex; flex-direction:column; gap:8px; min-width:0; }
+.intern-role-card .irc-title { font-size:1.6rem; margin:0; color:var(--space-cadet-1); font-weight:700; line-height:1.15; }
+.intern-role-card .irc-desc { font-size:1.35rem; color:var(--black_70); margin:0; white-space: normal; word-break: break-word; }
 .intern-role-card .select-role { margin-top:8px; align-self:flex-start; }
 
 /* hover/focus interactions */
-.intern-role-card:hover, .intern-role-card.tilted, .intern-role-card:focus { transform: translateY(-10px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) scale(1.02); box-shadow: 0 28px 80px rgba(3,16,41,0.12); filter: saturate(1.03); }
+.intern-role-card:hover, .intern-role-card.tilted, .intern-role-card:focus { transform: translateY(-10px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) scale(1.03); box-shadow: 0 36px 100px rgba(3,16,41,0.14); filter: saturate(1.04); }
 .intern-role-card:focus { outline: 3px solid rgba(122, 96, 255, 0.12); }
 
 /* small decorative sweep on hover using pseudo element */
@@ -810,13 +842,13 @@ html, body { overflow-x: hidden; }
   content: '';
   position: absolute;
   inset: 0;
-  border-radius: 14px;
+  border-radius: 16px;
   pointer-events: none;
   background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.06));
   mix-blend-mode: overlay;
   opacity: 0;
-  transform: translateX(-20%);
-  transition: transform .9s cubic-bezier(.2,.9,.2,1), opacity .45s ease;
+  transform: translateX(-18%);
+  transition: transform .7s cubic-bezier(.2,.9,.2,1), opacity .35s ease;
 }
 .intern-role-card:hover::before, .intern-role-card:focus::before { opacity: 1; transform: translateX(0); }
 
@@ -827,6 +859,27 @@ html, body { overflow-x: hidden; }
   100% { transform: translateY(0) scale(1); opacity: 1; }
 }
 .intern-role-card.role-reveal { animation: roleEntrance .7s cubic-bezier(.2,.9,.2,1) both; animation-delay: calc(var(--i, 0) * 80ms); }
+
+/* Flip card internals (front/back) */
+.flip-card-inner{ position:relative; width:100%; transform-style:preserve-3d; transition: transform 520ms cubic-bezier(.2,.9,.2,1); }
+.flip-card-front, .flip-card-back{ backface-visibility: hidden; transform-style: preserve-3d; width:100%; }
+.flip-card-front{ position:relative; z-index:2; }
+.flip-card-back{ position:absolute; inset:0; transform: rotateY(180deg); background: transparent; padding: 12px; }
+.intern-role-card.flipped .flip-card-inner{ transform: rotateY(180deg); }
+
+/* Card deco: soft blurred accent behind icon */
+.card-deco{ position:absolute; right: 10px; top: 10px; width:72px; height:72px; border-radius:50%; filter: blur(22px); background: radial-gradient(circle at 30% 30%, rgba(122,96,255,0.18), rgba(255,107,107,0.06)); pointer-events:none; z-index:0; }
+
+/* Role chip: small pill near title to show category */
+.role-chip{ display:inline-block; font-size:1.1rem; padding:6px 10px; border-radius:999px; color:#fff; background: linear-gradient(90deg,#6ad6ff,#7be6ff); font-weight:700; margin-bottom:6px; align-self:flex-start; box-shadow:0 8px 28px rgba(11,58,106,0.06); transition: transform .36s cubic-bezier(.2,.9,.2,1); }
+.role-chip:hover, .role-chip:focus{ transform: translateY(-4px) scale(1.02); }
+
+/* Expanded card: ensure full description and show back content smoothly */
+.intern-role-card.expanded{ transform: translateY(-6px) scale(1.02); box-shadow: 0 36px 100px rgba(3,16,41,0.14); }
+.intern-role-card.expanded .irc-desc{ max-height: none; }
+
+/* Ensure match highlight contrast for accessibility */
+.match-highlight{ background: linear-gradient(90deg,#fff3d6,#ffd371); color: var(--space-cadet-1); padding:0 4px; border-radius:4px; }
 
 /* small badge and quiz button inside card */
 .intern-role-card .quiz-badge { position: absolute; top: 10px; right: 10px; }
@@ -1365,6 +1418,40 @@ html, body { overflow-x: hidden; }
 
 .about-banner img {
   animation: bounce 2s infinite;
+}
+
+/* Enhanced interactive logo styles */
+.logo-wrap { display:inline-block; position:relative; width:100%; max-width:540px; margin-inline:auto; border-radius:14px; perspective:1000px; }
+.logo-wrap .about-logo { display:block; width:100%; height:auto; border-radius:12px; box-shadow: 0 18px 40px rgba(3,16,41,0.08); transition: transform 360ms cubic-bezier(.2,.9,.2,1), box-shadow 360ms ease, filter 360ms ease; will-change: transform; transform-origin: center center; }
+.logo-wrap .logo-ring { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:86%; height:86%; border-radius:50%; pointer-events:none; background: radial-gradient(circle at 30% 30%, rgba(255,211,123,0.12), transparent 20%), radial-gradient(circle at 70% 70%, rgba(123,214,255,0.08), transparent 25%); filter: blur(12px); opacity:0.8; transition: opacity 320ms ease, transform 320ms ease; }
+
+/* subtle floating animation for desktop */
+@keyframes logoFloat {
+  0% { transform: translateY(0) }
+  50% { transform: translateY(-10px) }
+  100% { transform: translateY(0) }
+}
+.logo-wrap .about-logo.banner-animation { animation: logoFloat 6s ease-in-out infinite; }
+
+/* tap pulse for touch devices */
+@keyframes tapPulse { 0% { transform: scale(1); filter: brightness(1); } 50% { transform: scale(1.06); filter: brightness(1.06); } 100% { transform: scale(1); filter: brightness(1); } }
+.about-logo.tap-pulse { animation: tapPulse 560ms cubic-bezier(.2,.9,.2,1); }
+
+/* hover state: elevate and brighten */
+.logo-wrap:hover .about-logo, .logo-wrap:focus-within .about-logo { transform: translateY(-6px) scale(1.03) rotateZ(0.6deg); box-shadow: 0 28px 80px rgba(3,16,41,0.14); filter: brightness(1.02); }
+.logo-wrap:hover .logo-ring, .logo-wrap:focus-within .logo-ring { transform: translate(-50%,-50%) scale(1.02); opacity:1; }
+
+/* small screens: reduce motion and disable tilt */
+@media (max-width: 900px) {
+  .logo-wrap { max-width:420px; }
+  .logo-wrap .about-logo.banner-animation { animation: logoFloat 8s ease-in-out infinite; }
+  .logo-wrap .about-logo { transition: transform 280ms ease, box-shadow 280ms ease; }
+  .logo-wrap .logo-ring { display: none; }
+}
+
+@media (max-width: 480px) {
+  .logo-wrap { max-width:320px; }
+  .logo-wrap .about-logo { border-radius:10px; }
 }
 
 /* Inline banner below the section heading (responsive) */
@@ -2366,11 +2453,37 @@ html, body { overflow-x: hidden; }
   overflow: hidden;
   transform: translateZ(0);
 }
+.intern-role-card .card-deco { position:absolute; right:-40px; top:-40px; width:140px; height:140px; background: radial-gradient(circle at 30% 30%, rgba(255,211,123,0.10), transparent 20%), radial-gradient(circle at 70% 70%, rgba(123,214,255,0.06), transparent 25%); transform: rotate(24deg); filter: blur(8px); pointer-events:none; }
 .intern-role-card:focus, .intern-role-card:hover{
   transform: translateY(-8px) scale(1.01);
   box-shadow: 0 24px 60px rgba(10,30,70,0.12);
   outline: none;
 }
+
+.intern-role-card .role-chip { animation: chipPop .48s cubic-bezier(.2,.9,.2,1); }
+@keyframes chipPop { 0% { transform: translateY(8px) scale(.96); opacity:0 } 60% { transform: translateY(-4px) scale(1.03); opacity:1 } 100% { transform: translateY(0) scale(1); opacity:1 } }
+
+.intern-role-card .irc-title { display:flex; gap:12px; align-items:center; }
+.irc-type { display:inline-flex; padding:6px 8px; border-radius:999px; background: linear-gradient(90deg, rgba(106,214,255,0.12), rgba(123,230,255,0.06)); color:var(--winter-sky); font-weight:700; margin-left:auto; }
+
+/* Animated opens indicator */
+.role-meta { display:flex; gap:8px; align-items:center; margin-top:8px }
+.open-pill { background:linear-gradient(90deg,#e6ffef,#eaf7ff); color:var(--space-cadet-1); padding:6px 8px; border-radius:999px; font-weight:700; font-size:1.2rem }
+
+/* View button - subtle hover */
+.view-role { background:transparent; border:1px solid rgba(0,0,0,0.06); }
+.view-role:hover { transform: translateY(-4px); }
+
+/* Role preview modal refinements */
+#rolePreviewModal .modal-dialog{ max-width:820px }
+#rolePreviewModal .modal-dialog p { font-size:1.35rem }
+
+/* Filter button active animation */
+.roles-toolbar .btn.active { box-shadow: 0 12px 32px rgba(39,76,255,0.12); transform: translateY(-4px); }
+
+/* Add small staggered transition when filtering */
+.roles-grid { transition: all .45s cubic-bezier(.2,.9,.2,1); }
+.intern-role-card.hide-for-filter { opacity:0; transform: translateY(12px) scale(.98); pointer-events:none; filter: blur(2px); }
 .intern-role-card:focus-visible { outline: 3px solid rgba(66,153,225,0.18); outline-offset:4px }
 
 /* icon */
@@ -2463,6 +2576,37 @@ button.btn.btn-calendly .btn-icon, .btn.btn-calendly .btn-icon { background: #ff
 
 /* Add a colorful tag chip for role types */
 .role-chip{display:inline-flex; align-items:center; gap:8px; font-size:1.2rem; padding:6px 8px; border-radius:999px; background:linear-gradient(90deg, rgba(106,214,255,0.12), rgba(123,230,255,0.06)); color:var(--winter-sky); border:1px solid rgba(106,214,255,0.08); margin-left:auto}
+
+/* ---------- NEW: Hero rotating keywords, flip-card styles and floating Apply CTA ---------- */
+.wd-title { display:inline-flex; gap:10px; align-items:center; flex-wrap:wrap; }
+.wd-title .rotate { color:var(--razzmatazz); position:relative; display:inline-block; }
+.wd-title .rotate-text { display:inline-block; min-width:110px; white-space:nowrap; overflow:hidden; }
+.wd-title .rotate::after { content: ''; display:block; height:3px; background:linear-gradient(90deg,var(--razzmatazz),var(--rajah)); width:0; position:absolute; left:0; bottom:-8px; border-radius:6px; transition:width .35s ease; }
+.wd-title .rotate.animate::after { width:100%; }
+
+/* Flip-card visual styles (used by role cards already wrapped) */
+.flip-card-inner { transform-style: preserve-3d; transition: transform .58s cubic-bezier(.2,.9,.2,1); }
+.flip-card-front, .flip-card-back { backface-visibility: hidden; transform-origin: center center; }
+.flip-card-back { transform: rotateY(180deg); position: absolute; inset: 0; padding: 14px; background: linear-gradient(180deg,#fff,#fbfdff); }
+.intern-role-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+.intern-role-card .card-back { display:flex; flex-direction:column; justify-content:center; }
+
+/* Floating sticky Apply CTA (small variant) */
+.floating-apply { position: fixed; right: 18px; bottom: 18px; z-index: 99999; border-radius:999px; padding:12px 16px; display:flex; gap:10px; align-items:center; background-image: linear-gradient(90deg,var(--razzmatazz),var(--rajah)); color:#fff; box-shadow: 0 12px 40px rgba(18,36,71,0.14); cursor:pointer; }
+.floating-apply .label { font-weight:700; font-size:1.35rem; }
+.floating-apply:focus { outline: 3px solid rgba(255,211,123,0.16); }
+
+/* Reveal animations for benefits and other sections */
+.reveal-up { opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s cubic-bezier(.2,.9,.2,1); }
+.reveal-up.visible { opacity:1; transform:translateY(0); }
+
+/* small helper for highlighted search matches (slightly stronger) */
+.match-highlight{ background: linear-gradient(90deg,#fff4c2,#ffd371); padding:0 4px; border-radius:4px; }
+
+@media (max-width:700px){ .floating-apply{ right:10px; bottom:10px; padding:10px 12px; } }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){ .flip-card-inner, .wd-title .rotate::after, .reveal-up { transition:none!important; }}
 
 
 

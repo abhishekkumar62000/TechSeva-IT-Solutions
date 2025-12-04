@@ -1,0 +1,55 @@
+/* role-styles.css — enhanced UI/UX and animations for internship roles */
+:root{
+  --card-gradient-start: #ffffff;
+  --card-gradient-end: #fbfdff;
+}
+
+/* header animation */
+.role-hero{ position:relative; overflow:hidden; border-radius:12px; padding:18px; background:linear-gradient(90deg,#fdf6ff, #f6fbff); box-shadow:0 12px 36px rgba(10,24,48,0.06); }
+.role-hero .sparkle{ position:absolute; right:-40px; top:-40px; width:160px; height:160px; background:radial-gradient(circle at 30% 30%, rgba(255,223,120,0.18), transparent 30%), radial-gradient(circle at 70% 70%, rgba(122,222,255,0.12), transparent 30%); filter:blur(12px); transform:rotate(12deg); animation: floaty 6s ease-in-out infinite; }
+
+@keyframes floaty{ 0%{ transform: translateY(0) rotate(0deg);} 50%{ transform: translateY(-8px) rotate(4deg);} 100%{ transform: translateY(0) rotate(0deg);} }
+
+/* project grid and card */
+#projectsList{ display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:14px; }
+.project-card{ position:relative; overflow:visible; transition:transform .28s cubic-bezier(.2,.9,.2,1), box-shadow .28s ease, filter .28s ease; background:linear-gradient(180deg,var(--card-gradient-start), var(--card-gradient-end)); }
+.project-card::after{ content:''; position:absolute; right:10px; top:10px; width:64px; height:64px; background:linear-gradient(135deg, rgba(122,222,255,0.12), rgba(106,214,255,0.08)); border-radius:14px; transform:rotate(18deg); filter:blur(6px); pointer-events:none; }
+.project-card .project-badge{ position:absolute; left:12px; top:12px; background:linear-gradient(90deg,#ffd371,#ff9a9e); padding:6px 10px; border-radius:999px; font-weight:700; color:#07203a; box-shadow:0 8px 20px rgba(18,36,71,0.06); }
+.project-card:hover{ transform:translateY(-8px) scale(1.005); filter:drop-shadow(0 22px 40px rgba(18,36,71,0.08)); }
+
+/* checkbox styles */
+.task-list label{ transition:background .18s ease, transform .12s ease; }
+.task-list input[type=checkbox]{ width:18px; height:18px; accent-color:#6ad6ff; }
+.task-list label:hover{ transform:translateX(6px); }
+
+/* progress micro-animations */
+.progress-wrap{ background:linear-gradient(90deg,#eef6ff,#f7fbff); border-radius:999px; height:12px; overflow:hidden; }
+.progress-bar{ box-shadow:0 6px 16px rgba(106,214,255,0.12); }
+
+/* action buttons */
+.btn.small{ border-radius:8px; }
+.btn.small:active{ transform:translateY(1px) scale(.998); }
+
+/* completed badge animation */
+.completed-badge{ transform-origin:center; transition:transform .28s cubic-bezier(.2,.9,.2,1), opacity .28s ease; }
+.completed-badge.show{ transform:scale(1.04); opacity:1; }
+
+/* entrance animations */
+.anim-stagger{ opacity:0; transform:translateY(10px) scale(.995); }
+.anim-stagger.visible{ opacity:1; transform:translateY(0) scale(1); transition:opacity .45s cubic-bezier(.2,.9,.2,1), transform .45s cubic-bezier(.2,.9,.2,1); }
+
+/* role header polish */
+#roleHeader h1{ font-size:1.6rem; letter-spacing:0.2px; }
+#roleHeader .btn{ box-shadow:0 10px 26px rgba(8,22,48,0.06); }
+
+/* small responsive tweaks */
+@media(max-width:640px){ #projectsList{ grid-template-columns:1fr; } .project-card::after{ display:none; } }
+
+/* Improve internships page role cards */
+.intern-role-card{ transition:transform .28s ease, box-shadow .28s ease; background:linear-gradient(180deg,#fff,#fbfdff); border-radius:12px; padding:12px; box-shadow:0 8px 20px rgba(18,36,71,0.04); }
+.intern-role-card:hover{ transform:translateY(-8px); box-shadow:0 22px 44px rgba(18,36,71,0.08); }
+.intern-role-card .irc-icon{ font-size:1.6rem; }
+.intern-role-card .irc-title{ font-weight:700; }
+.intern-role-card.anim-stagger{ opacity:0; transform:translateY(10px); }
+.intern-role-card.anim-stagger.visible{ opacity:1; transform:none; transition:opacity .45s ease, transform .45s cubic-bezier(.2,.9,.2,1); }
+

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="800" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Offer Letter Preview">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0" stop-color="#fff7ef" />
+      <stop offset="1" stop-color="#ffffff" />
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="#f7fafc"/>
+  <rect x="80" y="60" width="1040" height="680" rx="18" fill="url(#g)" stroke="#e6eefb" stroke-width="2"/>
+  <!-- Header -->
+  <g transform="translate(120,110)">
+    <rect x="0" y="0" width="960" height="84" rx="10" fill="#ffffff" />
+    <text x="20" y="44" font-family="Poppins, Arial, sans-serif" font-size="28" fill="#222" font-weight="700">TechSeva IT Solutions</text>
+    <circle cx="920" cy="42" r="18" fill="#ff6b35" />
+  </g>
+
+  <!-- Body lines -->
+  <g transform="translate(140,220)" fill="#9aaecb">
+    <rect x="0" y="0" width="820" height="16" rx="8" />
+    <rect x="0" y="36" width="760" height="12" rx="6" />
+    <rect x="0" y="64" width="760" height="12" rx="6" />
+    <rect x="0" y="96" width="820" height="12" rx="6" />
+    <rect x="0" y="128" width="600" height="12" rx="6" />
+    <rect x="0" y="160" width="760" height="12" rx="6" />
+    <rect x="0" y="192" width="760" height="12" rx="6" />
+    <rect x="0" y="224" width="640" height="12" rx="6" />
+  </g>
+
+  <!-- Signature area -->
+  <g transform="translate(140,420)">
+    <rect x="0" y="0" width="260" height="10" rx="5" fill="#e6eefb" />
+    <text x="0" y="42" font-family="Source Sans Pro, Arial, sans-serif" font-size="16" fill="#223">Abhishek Yadav</text>
+    <text x="0" y="64" font-family="Source Sans Pro, Arial, sans-serif" font-size="14" fill="#6b7a95">Founder — TechSeva IT Solutions</text>
+  </g>
+
+  <!-- Badge -->
+  <g transform="translate(860,520)">
+    <rect x="0" y="0" width="140" height="140" rx="16" fill="#fff" stroke="#ffe6d1" stroke-width="1"/>
+    <text x="20" y="44" font-family="Poppins, Arial, sans-serif" font-size="20" fill="#ff6b35" font-weight="700">OFFER</text>
+    <text x="20" y="74" font-family="Source Sans Pro, Arial, sans-serif" font-size="12" fill="#9aaecb">Internship</text>
+  </g>
+
+</svg>

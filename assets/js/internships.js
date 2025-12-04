@@ -434,7 +434,11 @@
           }
         })
       }, { threshold: 0.12 });
-      Array.from(rolesGrid.querySelectorAll('.intern-role-card')).forEach((c, i)=>{ c.style.setProperty('--i', i); revealObserver.observe(c); });
+      const roleCards = Array.from(rolesGrid.querySelectorAll('.intern-role-card'));
+      roleCards.forEach((c, i)=>{ c.style.setProperty('--i', i); revealObserver.observe(c); c.classList.add('anim-stagger'); });
+      // stagger visible when in viewport
+      // small timeout to add visible class for already-observed ones
+      setTimeout(()=>{ roleCards.forEach((c, i)=> setTimeout(()=> c.classList.add('visible'), i * 80)); }, 160);
       
       // Add interactive tilt effect and hover micro-interactions
       Array.from(rolesGrid.querySelectorAll('.intern-role-card')).forEach(card => {
@@ -579,6 +583,16 @@
           quizBtn.style.marginLeft = '8px';
           btnWrap.appendChild(quizBtn);
           quizBtn.addEventListener('click', function(e){ e.stopPropagation(); openQuizForRole(card.dataset.role || ''); });
+        }
+      });
+      // add decorative deco and role-chip to each card
+      Array.from(rolesGrid.querySelectorAll('.intern-role-card')).forEach(card => {
+        if(!card.querySelector('.card-deco')){
+          const deco = document.createElement('div'); deco.className = 'card-deco'; card.appendChild(deco);
+        }
+        // add small role-chip if missing
+        if(!card.querySelector('.role-chip')){
+          const chip = document.createElement('div'); chip.className = 'role-chip'; chip.textContent = card.dataset.type || ''; chip.style.marginLeft = '8px'; const body = card.querySelector('.irc-body'); if(body) body.insertBefore(chip, body.firstChild);
         }
       });
 
@@ -820,9 +834,11 @@
       if(submitQuiz) submitQuiz.addEventListener('click', function(){ finalizeQuiz(); });
       rolesGrid.addEventListener('click', function(e){
         const btn = e.target.closest('.select-role');
+        const quizBtn = e.target.closest('.quiz-btn');
         const card = e.target.closest('.intern-role-card');
         if(!card) return;
 
+        // If user clicked the Apply button, open inline apply form (existing behavior)
         if(btn && form){
           const role = card.dataset.role || (card.querySelector('.irc-title') && card.querySelector('.irc-title').textContent) || '';
           const roleField = form.querySelector('[name="role"]');
@@ -833,11 +849,72 @@
           return;
         }
 
-        // Toggle expanded details when clicking card body (not the apply button)
-        const isExpanded = card.classList.contains('expanded');
-        if(isExpanded){ card.classList.remove('expanded'); card.setAttribute('aria-expanded','false'); }
-        else { card.classList.add('expanded'); card.setAttribute('aria-expanded','true'); }
+        // If user clicked Quick Quiz button, the existing quiz handler is already wired on each quizBtn.
+        if(quizBtn){ return; }
+
+        // Otherwise: navigate to role detail page. Preserve existing UX by opening in same tab.
+        try{
+          const roleName = card.dataset.role || (card.querySelector('.irc-title') && card.querySelector('.irc-title').textContent) || '';
+          const href = 'role.html?role=' + encodeURIComponent(roleName);
+          window.location.href = href;
+        }catch(e){
+          // fallback: toggle expand if navigation fails
+          const isExpanded = card.classList.contains('expanded');
+          if(isExpanded){ card.classList.remove('expanded'); card.setAttribute('aria-expanded','false'); }
+          else { card.classList.add('expanded'); card.setAttribute('aria-expanded','true'); }
+        }
       });
+
+      // View-role modal open (from the view buttons added earlier)
+      const rolePreviewModal = document.getElementById('rolePreviewModal');
+      const closeRolePreview = document.getElementById('closeRolePreview');
+      const rolePreviewClose = document.getElementById('rolePreviewClose');
+      const rolePreviewApply = document.getElementById('rolePreviewApply');
+      let _lastActiveRolePreview = null;
+      let _rolePreviewKeyHandler = null;
+      function openRolePreview(card){
+        if(!rolePreviewModal || !card) return;
+        _lastActiveRolePreview = document.activeElement;
+        const title = card.querySelector('.irc-title') ? card.querySelector('.irc-title').textContent : (card.dataset.role || 'Role');
+        const short = card.querySelector('.irc-desc') ? card.querySelector('.irc-desc').textContent : '';
+        const long = card.dataset.longdesc || short;
+        document.getElementById('rolePreviewTitle').textContent = title;
+        document.getElementById('rolePreviewShort').textContent = (card.dataset.role || title);
+        document.getElementById('rolePreviewDesc').textContent = long;
+        const learn = document.getElementById('rolePreviewLearn'); learn.innerHTML = '';
+        // derive a few learning bullets from description heuristically
+        const bullets = [ 'Hands-on project experience', 'Mentor feedback & code reviews', 'Certificate on completion' ];
+        bullets.forEach(b => { const li = document.createElement('li'); li.textContent = b; learn.appendChild(li); });
+        // show modal and trap focus
+        rolePreviewModal.style.display = 'flex'; rolePreviewModal.setAttribute('aria-hidden','false');
+        const dlg = rolePreviewModal.querySelector('.modal-dialog'); const focusables = getFocusable(dlg); if(focusables.length) focusables[0].focus();
+        // focus trap and ESC handling
+        _rolePreviewKeyHandler = function(e){
+          if(e.key === 'Escape'){ e.preventDefault(); closeRolePreviewModal(); }
+          if(e.key === 'Tab'){
+            const nodes = getFocusable(dlg);
+            if(!nodes.length) return;
+            const first = nodes[0], last = nodes[nodes.length - 1];
+            if(e.shiftKey){ if(document.activeElement === first){ e.preventDefault(); last.focus(); } }
+            else { if(document.activeElement === last){ e.preventDefault(); first.focus(); } }
+          }
+        };
+        document.addEventListener('keydown', _rolePreviewKeyHandler);
+      }
+      // attach view button listeners
+      Array.from(rolesGrid.querySelectorAll('.view-role')).forEach(v => v.addEventListener('click', function(e){ e.stopPropagation(); const card = e.target.closest('.intern-role-card'); openRolePreview(card); }));
+      function closeRolePreviewModal(){ if(rolePreviewModal){ rolePreviewModal.style.display='none'; rolePreviewModal.setAttribute('aria-hidden','true'); } try{ if(_rolePreviewKeyHandler) document.removeEventListener('keydown', _rolePreviewKeyHandler); }catch(e){} try{ if(_lastActiveRolePreview) _lastActiveRolePreview.focus(); }catch(e){} _rolePreviewKeyHandler = null; _lastActiveRolePreview = null; }
+      if(closeRolePreview) closeRolePreview.addEventListener('click', closeRolePreviewModal);
+      if(rolePreviewClose) rolePreviewClose.addEventListener('click', closeRolePreviewModal);
+      if(rolePreviewApply) rolePreviewApply.addEventListener('click', function(){ const card = Array.from(rolesGrid.querySelectorAll('.intern-role-card')).find(c => c.querySelector('.irc-title') && c.querySelector('.irc-title').textContent === document.getElementById('rolePreviewTitle').textContent); if(card){ const form = document.getElementById('internForm'); if(form){ const roleField = form.querySelector('[name="role"]'); if(roleField) roleField.value = card.dataset.role || ''; const openBtn = document.getElementById('openApplyInline'); if(openBtn) openBtn.click(); } } closeRolePreviewModal(); });
+
+      // subtle chip animation on hover for polish
+      Array.from(rolesGrid.querySelectorAll('.role-chip')).forEach(ch => {
+        ch.addEventListener('mouseenter', () => { ch.animate([{ transform: 'translateY(0px)' }, { transform: 'translateY(-6px)' }, { transform: 'translateY(0px)' }], { duration: 520, easing: 'cubic-bezier(.2,.9,.2,1)' }); });
+      });
+
+      // animate filter buttons (visual feedback)
+      [filterAll, filterTech, filterCreative].forEach(btn => { if(!btn) return; btn.addEventListener('click', function(){ btn.animate([{ transform: 'translateY(0)' }, { transform: 'translateY(-6px)' }, { transform: 'translateY(0)' }], { duration: 360, easing: 'cubic-bezier(.2,.9,.2,1)' }); }); });
 
       // keyboard: Enter toggles expand, Space opens apply if focused on select-role
       rolesGrid.addEventListener('keydown', function(e){
@@ -990,3 +1067,66 @@
           });
     }catch(e){/* noop */}
   })();
+
+/* ---------- NEW: Hero rotate, '/' search shortcut, floating Apply CTA, flip behavior ---------- */
+(function(){
+  document.addEventListener('DOMContentLoaded', function(){
+    // Rotating hero keywords (non-blocking)
+    try{
+      const title = document.querySelector('.wd-title');
+      if(title){
+        const container = document.createElement('span'); container.className = 'rotate';
+        const rotating = document.createElement('span'); rotating.className = 'rotate-text'; container.appendChild(rotating);
+        title.appendChild(container);
+        const words = ['Web','App','UI/UX','AI/ML','Content']; let i=0;
+        function showNext(){ rotating.textContent = words[i]; container.classList.add('animate'); setTimeout(()=> container.classList.remove('animate'), 900); i = (i+1) % words.length; }
+        showNext(); setInterval(showNext, 2400);
+      }
+    }catch(e){/* ignore */}
+
+    // Keyboard: focus search on pressing '/'
+    try{
+      const search = document.getElementById('roleSearch');
+      window.addEventListener('keydown', function(e){
+        if(e.key === '/' && document.activeElement !== search && !(e.metaKey||e.ctrlKey||e.altKey)){
+          if(search){ e.preventDefault(); search.focus(); search.select(); }
+        }
+      });
+    }catch(e){ }
+
+    // Floating Apply CTA: create and wire up
+    try{
+      const floating = document.createElement('button'); floating.className = 'floating-apply'; floating.id = 'floatingApply'; floating.setAttribute('aria-label','Apply Now');
+      floating.innerHTML = '<span class="label">Apply</span>';
+      document.body.appendChild(floating);
+      const openBtn = document.getElementById('openApplyInline');
+      floating.addEventListener('click', function(){ if(openBtn) openBtn.click(); else { const formWrap = document.getElementById('apply-form'); if(formWrap){ formWrap.style.display = 'flex'; formWrap.setAttribute('aria-hidden','false'); } } });
+      // hide floating when near footer/when the form is visible
+      const footer = document.querySelector('footer');
+      function updateFloating(){ try{
+        const rect = footer && footer.getBoundingClientRect();
+        if(rect && rect.top < window.innerHeight - 120){ floating.style.opacity = '0'; floating.style.pointerEvents = 'none'; } else { floating.style.opacity = ''; floating.style.pointerEvents = ''; }
+      }catch(e){}
+      }
+      document.addEventListener('scroll', throttle(updateFloating, 150)); updateFloating();
+    }catch(e){ }
+
+    // small throttle helper
+    function throttle(fn, wait){ let busy = false; return function(){ if(busy) return; busy = true; setTimeout(()=>{ fn(); busy = false; }, wait); }; }
+
+    // Flip card toggle on double-click or keyboard 'f'
+    try{
+      const grid = document.getElementById('rolesGrid');
+      if(grid){
+        grid.addEventListener('dblclick', function(e){ const card = e.target.closest('.intern-role-card'); if(!card) return; card.classList.toggle('flipped'); const back = card.querySelector('.card-back'); if(back) back.setAttribute('aria-hidden', card.classList.contains('flipped') ? 'false' : 'true'); });
+        grid.addEventListener('keydown', function(e){ const card = e.target.closest('.intern-role-card'); if(!card) return; if(e.key.toLowerCase() === 'f'){ e.preventDefault(); card.classList.toggle('flipped'); const back = card.querySelector('.card-back'); if(back) back.setAttribute('aria-hidden', card.classList.contains('flipped') ? 'false' : 'true'); } });
+      }
+    }catch(e){ }
+
+    // IntersectionObserver to reveal elements with .reveal-up class (benefits etc.)
+    try{
+      const ro = new IntersectionObserver((entries, obs)=>{ entries.forEach(ent=>{ if(ent.isIntersecting){ ent.target.classList.add('visible'); obs.unobserve(ent.target); } }); }, { threshold: 0.12 });
+      document.querySelectorAll('.reveal-up').forEach(el=> ro.observe(el));
+    }catch(e){ }
+  });
+})();

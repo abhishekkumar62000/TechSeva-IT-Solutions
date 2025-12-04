@@ -968,6 +968,57 @@ document.addEventListener('click', function (e) {
   } catch (err) { console.error('Delegated submit listener error', err); }
 });
 
+/* Interactive logo in About section: parallax tilt on pointer move, tap pulse on touch */
+document.addEventListener('DOMContentLoaded', function () {
+  try {
+    const logoWrap = document.querySelector('.logo-wrap');
+    const logoImg = document.querySelector('.about-logo');
+    if (!logoWrap || !logoImg) return;
+
+    const isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+
+    // For touch devices, only enable tap-pulse for lightweight effect
+    if (isTouch) {
+      logoWrap.addEventListener('touchstart', function () {
+        logoImg.classList.add('tap-pulse');
+        setTimeout(() => logoImg.classList.remove('tap-pulse'), 700);
+      }, { passive: true });
+      return;
+    }
+
+    let rafId = null;
+    let pointer = { x: 0.5, y: 0.5 };
+
+    function applyTransform() {
+      const rx = (pointer.y - 0.5) * -12; // rotateX
+      const ry = (pointer.x - 0.5) * 12;  // rotateY
+      // subtle translation for depth
+      const tz = 8;
+      logoImg.style.transform = `perspective(900px) rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg) translateZ(${tz}px) scale(1.02)`;
+      rafId = null;
+    }
+
+    logoWrap.addEventListener('pointermove', function (e) {
+      const rect = logoWrap.getBoundingClientRect();
+      pointer.x = (e.clientX - rect.left) / rect.width;
+      pointer.y = (e.clientY - rect.top) / rect.height;
+      if (!rafId) rafId = requestAnimationFrame(applyTransform);
+    });
+
+    logoWrap.addEventListener('pointerenter', function () {
+      logoImg.style.transition = 'transform 220ms cubic-bezier(.2,.9,.2,1)';
+    });
+
+    logoWrap.addEventListener('pointerleave', function () {
+      if (rafId) cancelAnimationFrame(rafId); rafId = null;
+      logoImg.style.transform = '';
+      logoImg.style.transition = 'transform 360ms cubic-bezier(.2,.9,.2,1)';
+    });
+  } catch (err) {
+    console.error('Logo interaction init failed', err);
+  }
+});
+
 // prefill modal with cart summary
 function prefillModalFromCart(modal) {
   const nameEl = modal.querySelector('#m-name'); if (nameEl) nameEl.value = '';
