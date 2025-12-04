@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechSeva Job Portal</title>
+  <link rel="icon" href="./logo.png">
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo-container">
+        <h3 class="logo1"><span style="color: hsl(323, 100%, 50%);">TechSeva</span></h3>
+        <h3 class="logo2"><span style="color: rgb(246, 151, 8);">IT Solutions</span></h3>
+      </a>
+    </div>
+  </header>
+
+  <main class="container" style="padding:40px 20px; max-width:1000px; margin:0 auto;">
+    <h1 class="h1">TechSeva Job Portal</h1>
+    <p class="text">Add new job postings below. Jobs are stored locally in your browser (localStorage). Use this page to collect and display job openings that you can later transfer to a backend or CMS.</p>
+
+    <!-- Promo: AI ResumeXpert Analyst -->
+    <section class="promo" aria-labelledby="ai-resume" style="margin-bottom:22px;">
+      <div class="promo-card">
+        <div class="promo-left">
+          <h2 id="ai-resume" class="h2">🚀 AI ResumeXpert Analyst 🤖</h2>
+          <p class="text">Boost applicant resumes automatically — analyze CVs, extract skills and match candidates to jobs. Try the AI-powered ResumeXpert directly from TechSeva.</p>
+          <div style="display:flex;gap:10px;margin-top:12px;">
+            <a id="tryApp" class="btn" href="https://ai-resumexpert-analyst.streamlit.app/" target="_blank" rel="noopener">Open App</a>
+            <button id="previewApp" class="btn btn-small">Preview</button>
+          </div>
+        </div>
+        <div class="promo-right" aria-hidden="true">
+          <img src="./assets/images/resume-ai.png" alt="AI ResumeXpert" style="width:160px;height:160px;object-fit:cover;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.08)">
+        </div>
+      </div>
+
+      <div id="appModal" class="modal" role="dialog" aria-hidden="true">
+        <div class="modal-backdrop" id="modalBackdrop"></div>
+        <div class="modal-content">
+          <button id="closeModal" class="modal-close" aria-label="Close preview">✕</button>
+          <div id="iframeWrap" style="height:80vh;background:#fff;border-radius:8px;overflow:hidden;">
+            <iframe id="appFrame" src="" style="width:100%;height:100%;border:0;background:#fff"></iframe>
+          </div>
+          <p id="iframeMsg" class="text" style="display:none;padding:12px;background:#fff;border-radius:0 0 8px 8px;margin:0">Preview blocked by remote site — <a id="openExternal" href="#" target="_blank">Open in new tab</a></p>
+        </div>
+      </div>
+
+    </section>
+
+    <style>
+      .promo-card{display:flex;justify-content:space-between;align-items:center;background:linear-gradient(135deg,#fff,#f7fbff);border-radius:14px;padding:18px;box-shadow:0 10px 30px rgba(18,36,71,0.04);animation:slideIn 700ms ease both}
+      .promo-left{max-width:72%}
+      .promo-right{display:flex;align-items:center;justify-content:center}
+      .promo-card:hover{transform:translateY(-4px);transition:transform .18s ease}
+      @keyframes slideIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+      .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:9999}
+      .modal[aria-hidden="false"]{display:flex}
+      .modal-backdrop{position:absolute;inset:0;background:rgba(8,15,31,0.6)}
+      .modal-content{position:relative;width:90%;max-width:980px;border-radius:12px;overflow:hidden;box-shadow:0 20px 60px rgba(2,6,23,0.6);background:transparent}
+      .modal-close{position:absolute;right:12px;top:12px;z-index:3;background:#fff;border:0;padding:6px 9px;border-radius:8px;cursor:pointer}
+      .btn{background:#2b6ef6;color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none;display:inline-block}
+    </style>
+
+    <script>
+      // Modal preview logic
+      (function(){
+        const previewBtn = document.getElementById('previewApp');
+        const modal = document.getElementById('appModal');
+        const closeBtn = document.getElementById('closeModal');
+        const iframe = document.getElementById('appFrame');
+        const iframeMsg = document.getElementById('iframeMsg');
+        const openExternal = document.getElementById('openExternal');
+        const targetURL = 'https://ai-resumexpert-analyst.streamlit.app/';
+
+        function openModal(){
+          modal.setAttribute('aria-hidden','false');
+          iframe.src = targetURL;
+          // after 1.5s check if iframe loaded by contentWindow access (may throw if blocked)
+          setTimeout(()=>{
+            let blocked=false;
+            try{ const cw = iframe.contentWindow; blocked = !cw || cw.location.href === 'about:blank'; }catch(e){ blocked = true }
+            if(blocked){ iframe.style.display='none'; iframeMsg.style.display='block'; openExternal.href=targetURL }
+            else{ iframe.style.display='block'; iframeMsg.style.display='none' }
+          },1500);
+        }
+
+        function closeModal(){ iframe.src=''; modal.setAttribute('aria-hidden','true'); }
+
+        previewBtn.addEventListener('click', openModal);
+        closeBtn.addEventListener('click', closeModal);
+        document.getElementById('modalBackdrop').addEventListener('click', closeModal);
+      })();
+    </script>
+
+    <!-- End Promo -->
+    <!-- Job Aggregator Search (added) -->
+    <section aria-labelledby="find-job" style="margin-top:18px;">
+      <h2 id="find-job" class="h2">Find Jobs From Multiple Platforms</h2>
+
+      <form id="jobSearchForm" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:900px;margin-bottom:12px;align-items:end;">
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <label class="text">🎯 Enter Job Title</label>
+          <input name="q" id="searchTitle" placeholder="e.g., Data Scientist, Software Engineer" />
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <label class="text">📍 Preferred Location</label>
+          <input name="location" id="searchLocation" placeholder="e.g., Remote, New York, Bangalore" />
+        </div>
+
+        <div style="grid-column:1 / -1;display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:6px;">
+          <div style="display:flex;gap:8px;align-items:center;">
+            <input type="checkbox" id="src_all" checked disabled /> <label for="src_all" class="text">All sources (demo)</label>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <input type="checkbox" id="src_naukri" /> <label for="src_naukri" class="text">Naukri</label>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <input type="checkbox" id="src_linkedin" /> <label for="src_linkedin" class="text">LinkedIn</label>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <input type="checkbox" id="src_indeed" /> <label for="src_indeed" class="text">Indeed</label>
+          </div>
+          <div style="margin-left:auto;display:flex;gap:8px;">
+            <button id="searchBtn" class="btn" type="button">Find Job Now</button>
+            <button id="clearAlerts" class="btn btn-small" type="button">Clear Alerts</button>
+          </div>
+        </div>
+      </form>
+
+      <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px;max-width:900px;">
+        <input id="alertEmail" placeholder="Enter email for personalized alerts (optional)" style="flex:1;padding:8px;border-radius:8px;border:1px solid #ddd" />
+        <button id="saveAlert" class="btn btn-small" type="button">🔔 Save Alert</button>
+      </div>
+
+      <div id="aggregatedResults" style="max-width:900px;min-height:120px;">
+        <p class="text">Search jobs using the form above. This demo shows aggregated results (mock data). For production, integrate with job APIs or run a server-side scraper/aggregator (see server example).</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="post-job">
+      <h2 id="post-job" class="h2">Post a New Job</h2>
+
+      <form id="jobForm" style="display:grid;gap:10px;max-width:700px;margin-bottom:20px;">
+        <input name="title" placeholder="Job title" required>
+        <input name="company" placeholder="Company name" required>
+        <input name="location" placeholder="Location (city, remote, etc.)">
+        <input name="applyLink" placeholder="Apply link (optional)">
+        <textarea name="description" placeholder="Short description" rows="4"></textarea>
+        <div style="display:flex;gap:10px;">
+          <button class="btn" type="submit">Add Job</button>
+          <button id="clearJobs" class="btn" type="button">Clear All Jobs</button>
+        </div>
+      </form>
+
+    </section>
+
+    <section aria-labelledby="job-list">
+      <h2 id="job-list" class="h2">Job Listings</h2>
+      <ul id="jobList" class="blog-list" style="list-style:none;padding:0;margin:0;">
+        <!-- Jobs will appear here -->
+      </ul>
+    </section>
+
+    <p style="margin-top:24px;"><a href="index.html" class="btn btn-small">Back to Home</a></p>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-bottom">
+      <p class="copyright">&copy; 2025 TechSeva Solutions</p>
+    </div>
+  </footer>
+
+  <script src="./assets/js/job-aggregator.js" defer></script>
+
+  <script>
+    const form = document.getElementById('jobForm');
+    const list = document.getElementById('jobList');
+    const clearBtn = document.getElementById('clearJobs');
+    const storageKey = 'techseva_jobs';
+
+    function escapeHtml(s){ return (s||'').replace(/[&<>'"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\'' : '&#39;','"':'&quot;'}[c])); }
+
+    function renderJobs(){
+      const jobs = JSON.parse(localStorage.getItem(storageKey) || '[]');
+      if(!jobs.length){ list.innerHTML = '<p class="text">No jobs posted yet.</p>'; return; }
+      list.innerHTML = jobs.map((j, idx)=>`
+        <li class="blog-card" style="margin-bottom:12px;padding:12px;border-radius:8px;background:#fff;box-shadow:0 6px 18px rgba(18,36,71,0.04);">
+          <h3 class="h3">${escapeHtml(j.title)}</h3>
+          <p class="text"><strong>Company:</strong> ${escapeHtml(j.company)} &nbsp;|&nbsp; <strong>Location:</strong> ${escapeHtml(j.location || '—')}</p>
+          <p class="text">${escapeHtml(j.description || '')}</p>
+          <p><a class="btn btn-small" href="${escapeHtml(j.applyLink || '#')}" target="_blank">Apply</a></p>
+        </li>
+      `).join('');
+    }
+
+    form.addEventListener('submit', e=>{
+      e.preventDefault();
+      const job = {
+        title: form.title.value.trim(),
+        company: form.company.value.trim(),
+        location: form.location.value.trim(),
+        description: form.description.value.trim(),
+        applyLink: form.applyLink.value.trim()
+      };
+      if(!job.title || !job.company) return alert('Please provide job title and company.');
+      const jobs = JSON.parse(localStorage.getItem(storageKey) || '[]');
+      jobs.unshift(job);
+      localStorage.setItem(storageKey, JSON.stringify(jobs));
+      form.reset();
+      renderJobs();
+    });
+
+    clearBtn.addEventListener('click', ()=>{
+      if(!confirm('Clear all saved jobs?')) return; localStorage.removeItem(storageKey); renderJobs();
+    });
+
+    renderJobs();
+  </script>
+
+</body>
+
+</html>
