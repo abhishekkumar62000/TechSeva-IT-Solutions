@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Role Details — TechSeva Internship</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/role-styles.css">
+  <link rel="icon" href="./logo.png">
+  <style>
+  /* Scoped styles for role detail page enhancements */
+  .project-card{ transition:transform .18s ease, box-shadow .18s ease; }
+  .project-card:hover{ transform:translateY(-6px); box-shadow:0 18px 40px rgba(8,22,48,0.08); }
+  .project-card .task-list{ margin-top:10px; display:grid; gap:6px; }
+  .task-list label{ display:flex; gap:10px; align-items:flex-start; padding:8px; border-radius:8px; background:linear-gradient(180deg,#fff,#fbfdff); border:1px solid #f0f6ff; }
+  .progress-wrap{ height:12px; background:#eef6ff; border-radius:999px; overflow:hidden; }
+  .progress-bar{ height:100%; background:linear-gradient(90deg,#6ad6ff,#7be6ff); width:0%; transition:width .35s ease; }
+  .project-meta{ display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap; margin-top:8px; }
+  .btn.small{ padding:6px 8px; font-size:13px; }
+  .readme-actions{ display:flex; gap:8px; margin-top:8px; }
+  .completed-badge{ background:#2ecc71; color:#fff; padding:6px 8px; border-radius:999px; font-weight:700; }
+  .countdown{ font-size:13px; color:var(--space-cadet-1); }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo-container"><h3 class="logo1"><span style="color:#e608ae">TechSeva</span></h3><h3 class="logo2"><span style="color:#f69708">IT Solutions</span></h3></a>
+      <a href="internships.html#roles" class="btn">Back to Roles</a>
+    </div>
+  </header>
+
+  <main>
+    <article>
+      <section class="section">
+        <div class="container">
+          <div id="roleHeader" class="role-hero" style="display:flex; gap:12px; align-items:flex-start; flex-wrap:wrap; position:relative;">
+            <div class="sparkle" aria-hidden="true"></div>
+            <div style="flex:1;">
+              <h1 id="roleTitle" class="h2">Role</h1>
+              <p id="roleSummary" class="text" style="color:var(--space-cadet-1);">Loading role info…</p>
+              <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+                <a id="applyNow" class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfQyo0-v4pqtY_Q79I6jmbw17XDzlP2TWoSx-BhNoaDG2kC0g/viewform?usp=header" target="_blank" rel="noopener">Apply via Form</a>
+                <a id="applyInline" class="btn btn-ghost" href="internships.html#apply">Apply on Internships Page</a>
+                <button id="openQuickQuiz" class="btn">Quick Quiz</button>
+                <a id="shareLinkedIn" class="btn btn-ghost" href="#" target="_blank">Share on LinkedIn</a>
+              </div>
+            </div>
+            <div style="min-width:260px; max-width:360px;">
+              <div style="background:#fff; padding:12px; border-radius:10px; box-shadow:var(--shadow);">
+                <h4 style="margin:0 0 6px 0;">Project Snapshot</h4>
+                <p id="projectSnapshot" style="margin:0; color:var(--space-cadet-1);">Two easy + three intermediate projects assigned.</p>
+                <p style="margin-top:8px; font-size:13px; color:var(--purple-navy);">Complete projects, push to GitHub, add README and share on LinkedIn.</p>
+              </div>
+            </div>
+          </div>
+
+          <hr style="margin:18px 0; opacity:.06;">
+
+          <section id="projectsSection">
+            <h2 class="h3">Assigned Projects</h2>
+            <div id="projectsList" style="display:grid; gap:12px; margin-top:12px;"></div>
+          </section>
+
+          <section id="instructions" style="margin-top:20px;">
+            <h2 class="h3">How to complete and submit</h2>
+            <div id="instructionsBody" style="background:#fff; padding:12px; border-radius:8px; box-shadow:var(--shadow); margin-top:8px;"></div>
+          </section>
+
+          <section id="readmeTemplate" style="margin-top:20px;">
+            <h2 class="h3">GitHub README Template</h2>
+            <div style="margin-top:8px; display:flex; gap:8px;">
+              <button id="copyReadme" class="btn">Copy README</button>
+              <button id="openRepoGuide" class="btn btn-ghost">How to push to GitHub</button>
+            </div>
+            <pre id="readmeContent" style="white-space:pre-wrap; background:#0f1724; color:#e6eefb; padding:12px; border-radius:8px; margin-top:8px;">Loading README…</pre>
+          </section>
+
+          <section id="submission" style="margin-top:20px;">
+            <h2 class="h3">Submission Checklist</h2>
+            <ul id="submissionChecklist" style="margin-top:8px; color:var(--space-cadet-1);"></ul>
+          </section>
+
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="footer" style="margin-top:40px;">
+    <div class="container"><p>&copy; 2025 TechSeva Solutions</p></div>
+  </footer>
+
+  <!-- Quick Quiz modal (simple, per-role) -->
+  <div id="role-quiz-modal" class="quiz-modal" aria-hidden="true" role="dialog" aria-modal="true" style="display:none;">
+    <div class="quiz-dialog" role="document">
+      <button class="modal-close" id="closeRoleQuiz" aria-label="Close quiz">✕</button>
+      <h3 id="roleQuizTitle" class="h3">Role Quick Quiz</h3>
+      <div id="roleQuizContent"></div>
+      <div style="margin-top:12px; display:flex; gap:8px; align-items:center;"><button id="roleSubmitQuiz" class="btn">Submit</button><button id="roleCancelQuiz" class="btn btn-ghost">Cancel</button><div id="roleQuizResult" style="margin-left:auto; font-size:13px; color:var(--purple-navy); display:none"></div></div>
+    </div>
+  </div>
+
+  <script src="./assets/js/role.js"></script>
+  <script>
+    (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="mCPTaiF1I13_AGl4BlfzS";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+  </script>
+</body>
+
+</html>

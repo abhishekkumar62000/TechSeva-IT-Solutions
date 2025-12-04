@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>TechSeva Admin — Applications</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:20px}
+    .controls{display:flex;gap:8px;align-items:center;margin-bottom:12px}
+    table{width:100%;border-collapse:collapse;background:#fff;border-radius:8px;overflow:hidden}
+    th,td{padding:8px 10px;border-bottom:1px solid #eef6ff;text-align:left;font-size:14px}
+    th{background:#f7fbff}
+    .btn{display:inline-block;padding:6px 10px;border-radius:6px;background:#6ad6ff;color:#051327;border:0;cursor:pointer}
+    .btn-ghost{background:transparent;border:1px solid #e6eefb}
+    .small{font-size:13px;padding:4px 8px}
+    .muted{color:#6b7280}
+    .status-select{padding:6px;border-radius:6px}
+    input[type=text]{padding:6px;border-radius:6px;border:1px solid #e6eefb}
+  </style>
+</head>
+<body>
+  <h2>TechSeva — Admin: Applications</h2>
+  <div class="controls">
+    <label class="muted">Admin Token:</label>
+    <input id="adminToken" type="text" placeholder="Paste ADMIN_TOKEN here" style="min-width:320px">
+    <button id="loadBtn" class="btn small">Load Applications</button>
+    <button id="refreshBtn" class="btn btn-ghost small">Refresh</button>
+    <input id="search" type="text" placeholder="Search name, email, role" style="margin-left:auto; min-width:220px">
+  </div>
+  <div id="msg" style="margin-bottom:12px" aria-live="polite"></div>
+  <div style="overflow:auto; max-height:68vh;"> 
+    <table id="appsTable" aria-live="polite">
+      <thead>
+        <tr><th>Token</th><th>Name</th><th>Email</th><th>Role</th><th>Submitted</th><th>Status</th><th>Actions</th></tr>
+      </thead>
+      <tbody id="appsBody"><tr><td colspan="7" class="muted">No data loaded. Click "Load Applications".</td></tr></tbody>
+    </table>
+  </div>
+
+  <script>
+    const API_BASE = 'http://localhost:4000';
+    const appsBody = document.getElementById('appsBody');
+    const loadBtn = document.getElementById('loadBtn');
+    const refreshBtn = document.getElementById('refreshBtn');
+    const adminTokenInput = document.getElementById('adminToken');
+    const msg = document.getElementById('msg');
+    const search = document.getElementById('search');
+
+    function showMsg(t, type='info'){ msg.textContent = t; msg.style.color = type === 'error' ? '#c0392b' : '#075985'; }
+
+    async function loadApps(){
+      const token = adminTokenInput.value.trim();
+      if(!token){ showMsg('Please enter ADMIN_TOKEN to load applications', 'error'); return; }
+      showMsg('Loading...');
+      try{
+        const res = await fetch(API_BASE + '/admin/list', { headers: { 'X-ADMIN-TOKEN': token } });
+        const j = await res.json();
+        if(!j.ok){ showMsg('Error: ' + (j.error || 'unknown'), 'error'); return; }
+        renderApps(j.applications || []);
+        showMsg('Loaded ' + (j.applications||[]).length + ' applications');
+      }catch(e){ showMsg('Network error: ' + e.message, 'error'); }
+    }
+
+    function renderApps(arr){
+      const q = (search.value || '').toLowerCase().trim();
+      const apps = arr.filter(a => {
+        if(!q) return true;
+        return (a.name||'').toLowerCase().includes(q) || (a.email||'').toLowerCase().includes(q) || (a.role||'').toLowerCase().includes(q) || (a.token||'').toLowerCase().includes(q);
+      });
+      if(!apps.length){ appsBody.innerHTML = '<tr><td colspan="7" class="muted">No matches</td></tr>'; return; }
+      appsBody.innerHTML = '';
+      apps.forEach(app => {
+        const tr = document.createElement('tr');
+        const submitted = app.receivedAt ? new Date(app.receivedAt).toLocaleString() : '-';
+        tr.innerHTML = `
+          <td style="max-width:180px; word-break:anywhere"><code>${app.token}</code></td>
+          <td>${escapeHtml(app.name||'')}</td>
+          <td>${escapeHtml(app.email||'')}</td>
+          <td>${escapeHtml(app.role||'')}</td>
+          <td>${submitted}</td>
+          <td>
+            <select class="status-select" data-token="${app.token}">
+              <option ${app.status==='submitted'?'selected':''} value="submitted">submitted</option>
+              <option ${app.status==='shortlisted'?'selected':''} value="shortlisted">shortlisted</option>
+              <option ${app.status==='interview'?'selected':''} value="interview">interview</option>
+              <option ${app.status==='offer'?'selected':''} value="offer">offer</option>
+              <option ${app.status==='rejected'?'selected':''} value="rejected">rejected</option>
+            </select>
+          </td>
+          <td>
+            <input type="text" placeholder="Note (optional)" class="note" style="min-width:160px" />
+            <label style="margin-left:6px"><input type="checkbox" class="sendEmail" /> Send email</label>
+            <button class="btn small updateBtn" style="margin-left:6px">Update</button>
+            <button class="btn btn-ghost small" style="margin-left:6px" data-token="${app.token}" onclick="openProfile('${app.token}')">View</button>
+          </td>`;
+        appsBody.appendChild(tr);
+        // wire update button
+        const upd = tr.querySelector('.updateBtn');
+        upd.addEventListener('click', () => {
+          const sel = tr.querySelector('.status-select');
+          const note = tr.querySelector('.note').value || '';
+          const send = tr.querySelector('.sendEmail').checked;
+          doUpdate(app.token, sel.value, note, send);
+        });
+      });
+    }
+
+    function escapeHtml(s){ return String(s).replace(/[&<>\"]+/g, function(m){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[m] || m; }); }
+
+    async function doUpdate(token, status, note, sendEmail){
+      const adminToken = adminTokenInput.value.trim();
+      if(!adminToken){ showMsg('Missing ADMIN_TOKEN', 'error'); return; }
+      try{
+        const res = await fetch(API_BASE + '/admin/update-status', { method: 'POST', headers: { 'Content-Type':'application/json', 'X-ADMIN-TOKEN': adminToken }, body: JSON.stringify({ token, status, note, sendEmail }) });
+        const j = await res.json();
+        if(!j.ok){ showMsg('Update failed: ' + (j.error || 'unknown'), 'error'); return; }
+        showMsg('Updated ' + token + ' → ' + status);
+        // refresh list
+        loadApps();
+      }catch(e){ showMsg('Error: ' + e.message, 'error'); }
+    }
+
+    // open profile/track link in new tab
+    function openProfile(token){ window.open(API_BASE + '/application/status?token=' + encodeURIComponent(token), '_blank'); }
+
+    loadBtn.addEventListener('click', loadApps);
+    refreshBtn.addEventListener('click', loadApps);
+    search.addEventListener('input', () => { /* simple client-side filter by reloading last fetched list */ loadApps(); });
+
+    // load automatically if admin token present in query
+    (function(){ const qs = new URLSearchParams(location.search); const t = qs.get('token'); if(t){ adminTokenInput.value = t; loadApps(); } })();
+  </script>
+</body>
+</html>
